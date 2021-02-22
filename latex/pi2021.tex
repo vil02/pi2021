@@ -1,0 +1,124 @@
+\documentclass{beamer}
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usefonttheme[onlymath]{serif}
+\newcommand*{\theorembreak}{\usebeamertemplate{theorem end}\framebreak\usebeamertemplate{theorem begin}}
+\usepackage[ddmmyyyy,hhmmss]{datetime}
+\usepackage{animate}
+\usepackage{hyperref}
+\usepackage{etoolbox}
+\patchcmd{\theorem}{Theorem}{Twierdzenie}{}{}
+\patchcmd{\corollary}{Corollary}{Wniosek}{}{}
+\patchcmd{\lemma}{Lemma}{Lemat}{}{}
+\patchcmd{\proposition}{Proposition}{Stwierdzenie}{}{}
+\patchcmd{\axiom}{Axiom}{Aksjomat}{}{}
+\patchcmd{\example}{Example}{Przykład}{}{}
+\patchcmd{\definition}{Definition}{Definicja}{}{}
+\patchcmd{\remark}{Remark}{Uwaga}{}{}
+
+\newcommand{\enumsymbol}{$\triangleright$}
+\newcommand{\enumsymbolsec}{$\circ$}
+
+
+\newcommand{\colora}[1]{{\color{red}{#1}}}
+\newcommand{\colorb}[1]{{\color{green}{#1}}}
+\newcommand{\colorc}[1]{{\color{blue}{#1}}}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\renewcommand{\gcd}[2]{\mathtt{gcd}\paran{#1, #2}}
+
+\newcommand{\convto}[2]{\xrightarrow[#2]{#1}}
+\newcommand{\TODO}[1]{(\footnote{\texttt{TODO:} #1}!)}
+
+
+\let\oldsqrt\sqrt
+\def\sqrt{\mathpalette\DHLhksqrt}
+\def\DHLhksqrt#1#2{%
+\setbox0=\hbox{$#1\oldsqrt{#2\,}$}\dimen0=\ht0
+\advance\dimen0-0.2\ht0
+\setbox2=\hbox{\vrule height\ht0 depth -\dimen0}%
+{\box0\lower0.4pt\box2}}
+
+\newcommand{\define}[1]{\textit{#1}}
+\newcommand{\paren}[1]{\!\left(#1 \right)}
+
+\renewcommand*\footnoterule{}
+
+\setbeamertemplate{theorems}[numbered]
+
+\usetheme{Montpellier}
+
+\author{Piotr Idzik}
+\title{Co można znaleźć w potęgach dwójki?}
+\date{Karlsruhe, Katowice, 15.03.2021}
+\institute{blablabla}
+\setbeamerfont{page number in head/foot}{size=\large, shape=\ttfamily\color{black}}
+%\setbeamertemplate{footline}[frame number]
+\beamertemplatenavigationsymbolsempty
+
+\expandafter\def\expandafter\insertshorttitle\expandafter{%
+  \insertshorttitle\hfill%
+  \texttt{\insertframenumber}}
+
+
+\begin{document}
+\begin{frame}[plain]
+\maketitle
+%\hfill \texttt{\tiny{ver. \today\ \currenttime\/}}
+\hfill \textcolor[rgb]{0.85,0.85,0.85}{\texttt{\tiny{ver. \today\ \currenttime\/}}}
+\end{frame}
+\section{Sformułowanie problemu}
+\subsection{\define{Zawieranie} się liczb}
+\begin{frame}
+  \begin{definition}
+    Niech $a, b \in \N$.
+    Mówimy, że liczba $a$ \define{zawiera} liczbę $b$,
+    jeżeli reprezentacja dziesiętna liczby $b$ jest podłańcuchem reprezentacji dziesiętnej liczby $a$.
+  \end{definition}
+
+  \begin{example}
+    \begin{enumerate}[label=\enumsymbol]
+      \item liczba 128 zawiera liczby 12 oraz 28,
+      \item liczba 128 nie zawiera liczby 18.
+    \end{enumerate}
+  \end{example}
+\end{frame}
+\subsection{Potęgi dwójki}
+\begin{frame}
+  Rozważmy ciąg $(2^n)_{n \in \N}$, tzn. liczby 2, 4, 8, 16, 32, 64, 128, 256, 512, \ldots{}.
+  Zauważmy, że
+  \begin{enumerate}[label=\enumsymbol]
+    \item \colora{28} zawiera się w $2^7 = 1\colora{28}$,
+    \item \colora{314} zawiera się w $2^{74} = 188894659\colora{314}78580854784$,
+    \item \colora{31415} zawiera się w $2^{144} = 2230074519853062\colora{31415}35718272648361505980416$,
+    \item \colora{70000000} zawiera się w $2^{9452}$.
+  \end{enumerate}
+  Czy prawdą jest, że dla dowolnej liczby $n \in \N$ istnieje taki wykładnik $w \in \N$, że liczba $2^p$ zawiera liczbę $n$?
+\end{frame}
+
+\section{Rozstrzygnięcie problemu}
+\section{Główne twierdzenie}
+
+\begin{frame}
+  \begin{theorem}
+    Niech $p \in \N$ będzie takie, że $p \not = 10^r$, $r \in \N$.
+    Wówczas dla dowolnej liczby $n \in \N$ istnieje taki wykładnik $w \in \N$, że liczba $p^w$ zawiera liczbę $n$.
+  \end{theorem}
+  \begin{lemma}
+    Niech $p \in \N$ będzie takie, że $\log_{10}p \in \R \setminus \Q$.
+    Wówczas dla dowolnej liczby $n \in \N$ istnieje taki wykładnik $w \in \N$, że liczba $p^w$ rozpoczyna się liczbą $n$. 
+  \end{lemma}
+  \begin{lemma}
+    $\log_{10}p \in \Q$ wtedy i tylko wtedy, gdy $p = 10^r$, dla pewnego $r \in \N$.
+  \end{lemma}
+\end{frame}
+\end{document}
