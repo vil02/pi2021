@@ -50,6 +50,9 @@
 
 \newcommand{\define}[1]{\textit{#1}}
 \newcommand{\paren}[1]{\!\left(#1 \right)}
+\newcommand{\floor}[1]{\!\left\lfloor #1 \right\rfloor}
+\newcommand{\fracpart}[1]{\!\left\{ #1 \right\}}
+
 
 \renewcommand*\footnoterule{}
 
@@ -121,4 +124,24 @@
     $\log_{10}p \in \Q$ wtedy i tylko wtedy, gdy $p = 10^r$, dla pewnego $r \in \N$.
   \end{lemma}
 \end{frame}
+
+\begin{frame}
+\begin{definition}
+Niech $x \in \R$.
+\define{Częścią całkowitą liczby} $x$ nazywamy największą liczbę całkowitą, nie większą niż $x$ i oznaczamy symbolem $\floor{x}$.
+
+\define{Część ułamkową liczby} $x$ definiujemy wzorem
+\begin{equation*}
+\fracpart{x} = x-\floor{x} \in \left[0, 1\right).
+\end{equation*}
+\end{definition}
+\begin{example}
+  \begin{enumerate}[label=\enumsymbol]
+    \item $\floor{\pi} = 3$, $\fracpart{\pi} = 0.14159265\ldots{}$,
+    \item $\floor{15} = 15$, $\fracpart{15} = 0$,
+    \item $\floor{-4.25} = -5$, $\fracpart{-4.25} = 0.75$, 
+  \end{enumerate}
+\end{example}
+\end{frame}
+
 \end{document}
