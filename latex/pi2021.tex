@@ -50,8 +50,9 @@
 
 \newcommand{\define}[1]{\textit{#1}}
 \newcommand{\paren}[1]{\!\left(#1 \right)}
-\newcommand{\floor}[1]{\!\left\lfloor #1 \right\rfloor}
-\newcommand{\fracpart}[1]{\!\left\{ #1 \right\}}
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\fracpart}[1]{\left\{ #1 \right\}}
+\newcommand{\abs}[1]{\left| #1 \right|}
 
 
 \renewcommand*\footnoterule{}
@@ -117,10 +118,12 @@
     Wówczas dla dowolnej liczby $n \in \N$ istnieje taki wykładnik $w \in \N$, że liczba $p^w$ zawiera liczbę $n$.
   \end{theorem}
   \begin{lemma}
+    \label{lemma::powers_beginb_with_every_string}
     Niech $p \in \N$ będzie takie, że $\log_{10}p \in \R \setminus \Q$.
     Wówczas dla dowolnej liczby $n \in \N$ istnieje taki wykładnik $w \in \N$, że liczba $p^w$ rozpoczyna się liczbą $n$. 
   \end{lemma}
   \begin{lemma}
+    \label{lemma::log_10_irrational_iff}
     $\log_{10}p \in \Q$ wtedy i tylko wtedy, gdy $p = 10^r$, dla pewnego $r \in \N$.
   \end{lemma}
 \end{frame}
@@ -128,7 +131,7 @@
 \begin{frame}
 \begin{definition}
 Niech $x \in \R$.
-\define{Częścią całkowitą liczby} $x$ nazywamy największą liczbę całkowitą, nie większą niż $x$ i oznaczamy symbolem $\floor{x}$.
+\define{Częścią całkowitą liczby} $x$ nazywamy największą liczbę całkowitą nie większą niż $x$ i oznaczamy symbolem $\floor{x}$.
 
 \define{Część ułamkową liczby} $x$ definiujemy wzorem
 \begin{equation*}
@@ -142,6 +145,47 @@ Niech $x \in \R$.
     \item $\floor{-4.25} = -5$, $\fracpart{-4.25} = 0.75$, 
   \end{enumerate}
 \end{example}
+\end{frame}
+
+\begin{frame}
+  $$10^w = x \iff \log_{10}x = w,$$
+  \begin{enumerate}[label=\enumsymbol]
+    \item $\log_{10}100 = 2$, bo $10^2 = 100$,
+    \item $\log_{10}10^\alpha = \alpha \quad \paren{\alpha \in \R}$,
+    \item $\log_{10}2 = 0,30102\ldots{} \stackrel{\text{Lemat~\ref{lemma::log_10_irrational_iff}}}{\in} \R \setminus \Q$,
+    \item $\log_{10}3 = 0,47712\ldots{} \stackrel{\text{Lemat~\ref{lemma::log_10_irrational_iff}}}{\in} \R \setminus \Q$,
+    \item $\log_{10}4 = 0,60205\ldots{} \stackrel{\text{Lemat~\ref{lemma::log_10_irrational_iff}}}{\in} \R \setminus \Q$,
+    \item $10^{\log_{10}\alpha} = \alpha \quad \paren{\alpha \in \R}$,
+    \item $10^{\log_{10}p^w} = p^w \quad \paren{p, w \in \N}$,
+    \item $10^{w_1+w_2} = 10^{w_1} \cdot 10^{w_2} \quad \paren{w_1, w_2 \in \R}$,
+    \item $\log_{10} x_1 x_2 = \log_{10}x_1+\log_{10}x_2 \quad \paren{x_1, x_2 > 0}$,
+    \item $\log_{10}{p^w} = w \log_{10}p  \quad \paren{w_1, w_2 \in \R}$
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \begin{theorem}
+    \label{thm::fractional_part_of_multiples_of_irrational_numers_are_dense}
+    Jeżeli $\gamma \in \R \setminus \Q$, to ciąg $\paren{\fracpart{n\gamma}}_{n \in \N}$ jest \define{gęsty} w przedziale $[0, 1]$,
+    tzn. dowolny punkt przedziału $[0, 1]$ może zostać dowolnie dokładnie przybliżony wyrazami ciągu $\paren{\fracpart{n\gamma}}_{n \in \N}$.
+  \end{theorem}
+\end{frame}
+
+
+\begin{frame}
+  \begin{proof}[Dowód lematu~\ref{lemma::powers_beginb_with_every_string}]
+    \begin{align*}
+      p^w &= 10^{\log_{10}p^w} = 10^{w \log_{10} p} = 10^{\floor{w \log_{10} p} + \fracpart{w \log_{10} p}} \\
+          &= \underbrace{10^{\floor{w \log_{10} p}}}_{10\ldots 0}\cdot10^{\fracpart{w \log_{10} p}}.
+    \end{align*}
+    \begin{enumerate}[label=\enumsymbol]
+      \item $10^{\log_{10} 1.2345} = 1.2345$,
+      \item $10^{\log_{10} c_1,c_2c_3c_3 \ldots{} c_l} = c_1,c_2c_3c_3 \ldots{} c_l$.
+    \end{enumerate}
+    Niech $n = c_1c_2c_3 \ldots{} c_l$, wobec twierdzenia~\ref{thm::fractional_part_of_multiples_of_irrational_numers_are_dense} istnieje $w > \frac{l}{\log_{10}p}$ takie, że
+    $\fracpart{w \log_{10} p}$ jest \textit{wystarczająco dobrym} przybliżeniem $\log_{10}{c_1,c_2c_3c_3 \ldots{} c_l}$.  
+  \end{proof}
+  
 \end{frame}
 
 \end{document}
