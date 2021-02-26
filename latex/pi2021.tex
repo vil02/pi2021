@@ -10,6 +10,8 @@
 \newcommand*{\theorembreak}{\usebeamertemplate{theorem end}\framebreak\usebeamertemplate{theorem begin}}
 \usepackage[ddmmyyyy,hhmmss]{datetime}
 \usepackage{animate}
+\usepackage{seqsplit}
+\usepackage{fontawesome}
 \usepackage{hyperref}
 \usepackage{etoolbox}
 \patchcmd{\theorem}{Theorem}{Twierdzenie}{}{}
@@ -53,7 +55,7 @@
 \newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
 \newcommand{\fracpart}[1]{\left\{ #1 \right\}}
 \newcommand{\abs}[1]{\left| #1 \right|}
-
+\newcommand{\email}[1]{\href{mailto: #1}{\texttt{#1}}}
 
 \renewcommand*\footnoterule{}
 
@@ -61,13 +63,18 @@
 
 \usetheme{Montpellier}
 
-\author{Piotr Idzik}
+\author{\texorpdfstring{\href{https://www.linkedin.com/in/piotr-idzik-34b572151/}{Piotr Idzik} \\ \email{vil02@o2.pl}}{Piotr Idzik}}
 \title{Co można znaleźć w potęgach dwójki?}
 \date{Karlsruhe, Katowice, 15.03.2021}
-\institute{blablabla}
 \setbeamerfont{page number in head/foot}{size=\large, shape=\ttfamily\color{black}}
 %\setbeamertemplate{footline}[frame number]
-\beamertemplatenavigationsymbolsempty
+%\beamertemplatenavigationsymbolsempty
+
+\setbeamertemplate{navigation symbols}
+{%
+  \vbox{%
+  \hbox{\insertbackfindforwardnavigationsymbol}}%
+}
 
 \expandafter\def\expandafter\insertshorttitle\expandafter{%
   \insertshorttitle\hfill%
@@ -77,7 +84,9 @@
 \begin{document}
 \begin{frame}[plain]
 \maketitle
-%\hfill \texttt{\tiny{ver. \today\ \currenttime\/}}
+
+\href{https://www.linkedin.com/in/piotr-idzik-34b572151/}{\faLinkedinSquare}
+\href{https://github.com/vil02}{\faGithubSquare}
 \hfill \textcolor[rgb]{0.85,0.85,0.85}{\texttt{\tiny{ver. \today\ \currenttime\/}}}
 \end{frame}
 \section{Sformułowanie problemu}
@@ -104,7 +113,8 @@
     \item \colora{28} zawiera się w $2^7 = 1\colora{28}$,
     \item \colora{314} zawiera się w $2^{74} = 188894659\colora{314}78580854784$,
     \item \colora{31415} zawiera się w $2^{144} = 2230074519853062\colora{31415}35718272648361505980416$,
-    \item \colora{70000000} zawiera się w $2^{9452}$.
+    \item 70000000 zawiera się w $2^{9452}$,
+    \item 2000000000 zawiera się w $2^{100824}$.
   \end{enumerate}
   Czy prawdą jest, że dla dowolnej liczby $n \in \N$ istnieje taki wykładnik $w \in \N$, że liczba $2^p$ zawiera liczbę $n$?
 \end{frame}
