@@ -14,7 +14,7 @@ def get_oeis_data(in_url):
     reads a given oeis url into a map
     """
     def proc_signe_line(in_str):
-        n_str, res_str = in_str.split(' ')
+        n_str, res_str = in_str.split()
         return int(n_str), int(res_str)
     raw_str = urllib.request.urlopen(in_url).read().decode("utf-8")
     res = {}
