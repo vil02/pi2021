@@ -23,6 +23,7 @@ def get_oeis_data(in_url):
             cur_key, cur_value = proc_signe_line(cur_line)
             assert cur_key not in res
             res[cur_key] = cur_value
+    assert res
     return res
 
 
