@@ -31,7 +31,6 @@ class PowStrData:
         cur_val = self.pow_data[-1]*self.base
         for _ in range(len(self.pow_data), in_exp+1):
             self._append_data(cur_val)
-            assert cur_val == self.base**_
             cur_val *= self.base
 
     def is_in_result(self, in_val, in_exp):
