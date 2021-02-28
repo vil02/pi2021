@@ -63,26 +63,27 @@ def prepare_frame_data(in_frame_number, in_power_base, in_output_folder):
     make_power_substr_plot(in_power_base, range(0, 130), range(0, 72))
     pdf_file_name = f'power_substr_plot_{in_power_base}.pdf'
     cur_fig.savefig(in_output_folder/pdf_file_name, bbox_inches='tight')
-    tex_file_name = f'power_substr_frame_{in_frame_number}.tex'
-    with open(in_output_folder/tex_file_name, 'w',  encoding='utf-8') \
-            as tex_file:
-        tex_file.write('\\begin{frame}\n')
-        tex_file.write('  \\begin{figure}\n')
-        tex_file.write('    \\centering\n')
-        tex_file.write(
-            f'    \\includegraphics[width=\\textwidth]{{{pdf_file_name}}}\n')
-        tex_file.write(
-            '    \\caption{Punkt $(x, y)$ jest zaznaczony na '
-            '\\textcolor{red}{czerwono}, jeżeli $x$ zawiera się w '
-            f'${in_power_base}^y$. '
-            'Kolor \\textcolor{blue}{niebieski} oznacza, że '
-            f'${in_power_base}^y$ \\define{{zaczyna się}} liczbą $x$.}}\n')
-        tex_file.write('  \\end{figure}\n')
-        tex_file.write('\\end{frame}\n')
+    tex_str = \
+        '\\begin{frame}\n' \
+        '  \\begin{figure}\n' \
+        '    \\centering\n' \
+        f'    \\includegraphics[width=\\textwidth]{{{pdf_file_name}}}\n' \
+        '    \\caption{Punkt $(x, y)$ jest zaznaczony na ' \
+        '\\textcolor{red}{czerwono}, jeżeli $x$ zawiera się w ' \
+        f'${in_power_base}^y$.' \
+        ' Kolor \\textcolor{blue}{niebieski} oznacza, że ' \
+        f'${in_power_base}^y$ \\define{{zaczyna się}} liczbą $x$.}}\n' \
+        '  \\end{figure}\n' \
+        '\\end{frame}\n'
+    return tex_str
 
 
 OUTPUT_FOLDER = \
     pathlib.Path(__file__).parents[1]/'tmp_data'/'power_substr_plots'
 OUTPUT_FOLDER.mkdir(parents=True, exist_ok=True)
-for (frame_num, power_base) in enumerate([2, 3, 4, 5, 6, 7, 8, 9]):
-    prepare_frame_data(frame_num, power_base, OUTPUT_FOLDER)
+TEX_STR_LIST = [prepare_frame_data(frame_num, power_base, OUTPUT_FOLDER)
+                for (frame_num, power_base)
+                in enumerate([2, 3, 4, 5, 6, 7, 8, 9])]
+with open(OUTPUT_FOLDER/'power_substr_plots.tex', 'w',  encoding='utf-8') \
+        as ALL_FRAMES_FILE:
+    ALL_FRAMES_FILE.write('\n\n'.join(TEX_STR_LIST))
