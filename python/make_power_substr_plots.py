@@ -50,6 +50,7 @@ def make_power_substr_plot(in_power_base, value_range, exponent_range):
     plt.xlabel("wartość")
     plt.ylabel("wykładnik")
     plt.gca().set_aspect('equal', adjustable='box')
+    plt.close(plt.gcf())
 
 
 def prepare_frame_data(in_power_base, in_output_folder):
