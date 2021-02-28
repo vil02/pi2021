@@ -4,7 +4,7 @@ tests for pow_str_data
 """
 
 import unittest
-import urllib
+import urllib.request
 
 import pow_str_data as psd
 
