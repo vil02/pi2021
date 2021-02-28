@@ -56,6 +56,9 @@ class TestPowStrData(unittest.TestCase):
                 self.assertAlmostEqual(
                     cur_res, self.oeis_test_data[cur_pow_base][_])
                 self.assertIn(str(_), str(cur_pow_base**cur_res))
+                self.assertEqual(
+                    cur_str_pow_data.get_str(cur_res),
+                    str(cur_pow_base**cur_res))
 
 
 if __name__ == '__main__':
