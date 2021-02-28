@@ -48,7 +48,7 @@ def make_power_substr_plot(in_power_base, value_range, exponent_range):
         x_data_starts, y_data_starts,
         color=[0, 0, 1], **commot_plot_params)
     plt.xlabel("wartość")
-    plt.ylabel("wyładnik")
+    plt.ylabel("wykładnik")
     plt.gca().set_aspect('equal', adjustable='box')
 
 
