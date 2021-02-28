@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-creates pdf-plots and the tex files with the corresponding frames for all
-pow_substr_plots
+prepares the power_substr_plots.tex file
 """
 
 import itertools
@@ -53,10 +52,9 @@ def make_power_substr_plot(in_power_base, value_range, exponent_range):
     plt.gca().set_aspect('equal', adjustable='box')
 
 
-def prepare_frame_data(in_frame_number, in_power_base, in_output_folder):
+def prepare_frame_data(in_power_base, in_output_folder):
     """
-    creates pdf-plots and the tex files with the corresponding frames for all
-    pow_substr_plots
+    creates pdf-plot and returns the tex-string with a frame including it
 
     """
     cur_fig = plt.figure()
@@ -81,9 +79,8 @@ def prepare_frame_data(in_frame_number, in_power_base, in_output_folder):
 OUTPUT_FOLDER = \
     pathlib.Path(__file__).parents[1]/'tmp_data'/'power_substr_plots'
 OUTPUT_FOLDER.mkdir(parents=True, exist_ok=True)
-TEX_STR_LIST = [prepare_frame_data(frame_num, power_base, OUTPUT_FOLDER)
-                for (frame_num, power_base)
-                in enumerate([2, 3, 4, 5, 6, 7, 8, 9])]
+TEX_STR_LIST = \
+    [prepare_frame_data(_, OUTPUT_FOLDER) for _ in [2, 3, 4, 5, 6, 7, 8, 9]]
 with open(OUTPUT_FOLDER/'power_substr_plots.tex', 'w',  encoding='utf-8') \
         as ALL_FRAMES_FILE:
     ALL_FRAMES_FILE.write('\n\n'.join(TEX_STR_LIST))
