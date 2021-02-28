@@ -12,6 +12,8 @@
 \usepackage{animate}
 \usepackage{seqsplit}
 \usepackage{fontawesome}
+\usepackage{pgffor}
+\usepackage{import}
 \usepackage{hyperref}
 \usepackage{etoolbox}
 \patchcmd{\theorem}{Theorem}{Twierdzenie}{}{}
@@ -119,6 +121,12 @@
   Czy prawdą jest, że dla dowolnej liczby $n \in \N$ istnieje taki wykładnik $w \in \N$, że liczba $2^p$ zawiera liczbę $n$?
 \end{frame}
 
+\foreach \framenum in {0, ..., 7} 
+{%
+  \subimport{../tmp_data/power_substr_plots/}{power_substr_frame_\framenum.tex}
+}%
+
+
 \section{Rozstrzygnięcie problemu}
 \section{Główne twierdzenie}
 
@@ -197,5 +205,4 @@ Niech $x \in \R$.
   \end{proof}
   
 \end{frame}
-
 \end{document}
