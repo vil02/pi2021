@@ -48,6 +48,9 @@ def make_power_substr_plot(in_power_base, value_range, exponent_range):
     plt.plot(
         x_data_starts, y_data_starts,
         color=[0, 0, 1], **commot_plot_params)
+    d_lim = 0.7
+    plt.xlim([min(value_range)-d_lim, max(value_range)+d_lim])
+    plt.ylim([min(exponent_range)-d_lim, max(exponent_range)+d_lim])
     plt.xlabel("wartość")
     plt.ylabel("wykładnik")
     plt.gca().set_aspect('equal', adjustable='box')
@@ -65,7 +68,8 @@ def prepare_frame_data(in_power_base, in_output_folder):
     pdf_subfolder_name = 'power_substr_plots'
     pdf_output_folder = in_output_folder/pdf_subfolder_name
     pdf_output_folder.mkdir(parents=True, exist_ok=True)
-    cur_fig.savefig(pdf_output_folder/pdf_file_name, bbox_inches='tight')
+    cur_fig.savefig(
+        pdf_output_folder/pdf_file_name, bbox_inches='tight', pad_inches=0.01)
     tex_str = \
         '\\begin{frame}\n' \
         '  \\begin{figure}\n' \
@@ -84,8 +88,9 @@ def prepare_frame_data(in_power_base, in_output_folder):
 
 OUTPUT_FOLDER = \
     common_functions.get_tmp_data_folder()
+POWER_BASE_RANGE = range(2, 12)
 TEX_STR_LIST = \
-    [prepare_frame_data(_, OUTPUT_FOLDER) for _ in [2, 3, 4, 5, 6, 7, 8, 9]]
+    [prepare_frame_data(_, OUTPUT_FOLDER) for _ in POWER_BASE_RANGE]
 with open(OUTPUT_FOLDER/'power_substr_plots.tex', 'w',  encoding='utf-8') \
         as ALL_FRAMES_FILE:
     ALL_FRAMES_FILE.write('\n\n'.join(TEX_STR_LIST))
