@@ -4,9 +4,10 @@ prepares the power_substr_plots.tex file
 """
 
 import itertools
-import pathlib
 import matplotlib.pyplot as plt
 import matplotlib
+
+import common_functions
 
 from pow_str_lib import pow_str_data as psd
 
@@ -78,7 +79,7 @@ def prepare_frame_data(in_power_base, in_output_folder):
 
 
 OUTPUT_FOLDER = \
-    pathlib.Path(__file__).parents[1]/'tmp_data'/'power_substr_plots'
+    common_functions.get_tmp_data_folder()/'power_substr_plots'
 OUTPUT_FOLDER.mkdir(parents=True, exist_ok=True)
 TEX_STR_LIST = \
     [prepare_frame_data(_, OUTPUT_FOLDER) for _ in [2, 3, 4, 5, 6, 7, 8, 9]]
