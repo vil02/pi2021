@@ -1,0 +1,23 @@
+name: qpdf_check
+
+on:
+  push:
+    paths:
+      - 'generated/**'
+      - '.github/workflows/qpdf_check.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install qpdf
+      run: |
+        sudo apt-get install qpdf
+    - name: Check with qpdf
+      working-directory: ${{github.workspace}}/generated
+      shell: bash
+      run: |
+        for cur_file in *.pdf; do qpdf --check $cur_file; done
