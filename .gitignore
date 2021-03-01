@@ -437,5 +437,6 @@ dmypy.json
 # pylint
 .pylint.d/
 
+*.pdf
 !/generated/*.pdf
 /tmp_data/
