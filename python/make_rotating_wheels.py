@@ -16,8 +16,7 @@ matplotlib.rcParams['text.latex.preamble'] = \
     r'\usepackage{amssymb}'+'\n' \
     r'\newcommand{\R}{\mathbb{R}}'+'\n' \
     r'\newcommand{\Q}{\mathbb{Q}}'+'\n' \
-    r'\let\oldsqrt\sqrt'+'\n' \
-    r'\let\oldsqrt\sqrt'+'\n' \
+    r'\let\oldsqrt\sqrt{}'+'\n' \
     r'\def\sqrt{\mathpalette\DHLhksqrt}'+'\n' \
     r'\def\DHLhksqrt#1#2{%'+'\n' \
     r'\setbox0=\hbox{$#1\oldsqrt{#2\,}$}\dimen0=\ht0'+'\n' \
