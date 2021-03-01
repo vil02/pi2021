@@ -62,12 +62,16 @@ def prepare_frame_data(in_power_base, in_output_folder):
     cur_fig = plt.figure()
     make_power_substr_plot(in_power_base, range(0, 130), range(0, 72))
     pdf_file_name = f'power_substr_plot_{in_power_base}.pdf'
-    cur_fig.savefig(in_output_folder/pdf_file_name, bbox_inches='tight')
+    pdf_subfolder_name = 'power_substr_plots'
+    pdf_output_folder = in_output_folder/pdf_subfolder_name
+    pdf_output_folder.mkdir(parents=True, exist_ok=True)
+    cur_fig.savefig(pdf_output_folder/pdf_file_name, bbox_inches='tight')
     tex_str = \
         '\\begin{frame}\n' \
         '  \\begin{figure}\n' \
         '    \\centering\n' \
-        f'    \\includegraphics[width=\\textwidth]{{{pdf_file_name}}}\n' \
+        f'    \\includegraphics[width=\\textwidth]'\
+        f'{{./{pdf_subfolder_name}/{pdf_file_name}}}\n' \
         '    \\caption{Punkt $(x, y)$ jest zaznaczony na ' \
         '\\textcolor{red}{czerwono}, jeżeli $x$ zawiera się w ' \
         f'${in_power_base}^y$.' \
@@ -79,8 +83,7 @@ def prepare_frame_data(in_power_base, in_output_folder):
 
 
 OUTPUT_FOLDER = \
-    common_functions.get_tmp_data_folder()/'power_substr_plots'
-OUTPUT_FOLDER.mkdir(parents=True, exist_ok=True)
+    common_functions.get_tmp_data_folder()
 TEX_STR_LIST = \
     [prepare_frame_data(_, OUTPUT_FOLDER) for _ in [2, 3, 4, 5, 6, 7, 8, 9]]
 with open(OUTPUT_FOLDER/'power_substr_plots.tex', 'w',  encoding='utf-8') \
