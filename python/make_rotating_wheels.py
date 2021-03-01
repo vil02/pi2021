@@ -13,9 +13,18 @@ import common_functions
 
 matplotlib.rcParams['text.usetex'] = True
 matplotlib.rcParams['text.latex.preamble'] = \
-    r'\usepackage{amssymb}' \
-    r'\newcommand{\R}{\mathbb{R}}' \
-    r'\newcommand{\Q}{\mathbb{Q}}'
+    r'\usepackage{amssymb}'+'\n' \
+    r'\newcommand{\R}{\mathbb{R}}'+'\n' \
+    r'\newcommand{\Q}{\mathbb{Q}}'+'\n' \
+    r'\let\oldsqrt\sqrt'+'\n' \
+    r'\let\oldsqrt\sqrt'+'\n' \
+    r'\def\sqrt{\mathpalette\DHLhksqrt}'+'\n' \
+    r'\def\DHLhksqrt#1#2{%'+'\n' \
+    r'\setbox0=\hbox{$#1\oldsqrt{#2\,}$}\dimen0=\ht0'+'\n' \
+    r'\advance\dimen0-0.2\ht0'+'\n' \
+    r'\setbox2=\hbox{\vrule height\ht0 depth -\dimen0}%'+'\n' \
+    r'{\box0\lower0.4pt\box2}}'+'\n' \
+    r'\def\sqrt{\mathpalette\DHLhksqrt}'
 
 
 def get_center():
