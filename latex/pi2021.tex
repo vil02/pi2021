@@ -136,13 +136,13 @@
     Wówczas dla dowolnej liczby $n \in \N$ istnieje taki wykładnik $w \in \N$, że liczba $p^w$ zawiera liczbę $n$.
   \end{theorem}
   \begin{lemma}
-    \label{lemma::powers_beginb_with_every_string}
+    \label{lemma::powers_begin_with_every_string}
     Niech $p \in \N$ będzie takie, że $\log_{10}p \in \R \setminus \Q$.
     Wówczas dla dowolnej liczby $n \in \N$ istnieje taki wykładnik $w \in \N$, że liczba $p^w$ rozpoczyna się liczbą $n$. 
   \end{lemma}
   \begin{lemma}
     \label{lemma::log_10_irrational_iff}
-    $\log_{10}p \in \Q$ wtedy i tylko wtedy, gdy $p = 10^r$, dla pewnego $r \in \N$.
+    $\log_{10}p \in \Q$ wtedy i tylko wtedy, gdy $p = 10^r$, dla pewnego $r \in \N_0$.
   \end{lemma}
 \end{frame}
 
@@ -197,7 +197,7 @@ Niech $x \in \R$.
 
 
 \begin{frame}
-  \begin{proof}[Dowód lematu~\ref{lemma::powers_beginb_with_every_string}]
+  \begin{proof}[Dowód lematu~\ref{lemma::powers_begin_with_every_string}]
     \begin{align*}
       p^w &= 10^{\log_{10}p^w} = 10^{w \log_{10} p} = 10^{\floor{w \log_{10} p} + \fracpart{w \log_{10} p}} \\
           &= \underbrace{10^{\floor{w \log_{10} p}}}_{10\ldots 0}\cdot10^{\fracpart{w \log_{10} p}}.
