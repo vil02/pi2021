@@ -13,6 +13,7 @@
 \usepackage{seqsplit}
 \usepackage{fontawesome}
 \usepackage{import}
+\usepackage{animate}
 \usepackage{hyperref}
 \usepackage{etoolbox}
 \patchcmd{\theorem}{Theorem}{Twierdzenie}{}{}
@@ -57,6 +58,8 @@
 \newcommand{\fracpart}[1]{\left\{ #1 \right\}}
 \newcommand{\abs}[1]{\left| #1 \right|}
 \newcommand{\email}[1]{\href{mailto: #1}{\texttt{#1}}}
+
+\newcommand{\tmpdatapath}{../tmp_data/}
 
 \renewcommand*\footnoterule{}
 
@@ -120,7 +123,7 @@
   Czy prawdą jest, że dla dowolnej liczby $n \in \N$ istnieje taki wykładnik $w \in \N$, że liczba $2^p$ zawiera liczbę $n$?
 \end{frame}
 
-\subimport{../tmp_data/power_substr_plots/}{power_substr_plots.tex}
+\subimport{\tmpdatapath power_substr_plots/}{power_substr_plots.tex}
 
 
 
@@ -141,6 +144,12 @@
     \label{lemma::log_10_irrational_iff}
     $\log_{10}p \in \Q$ wtedy i tylko wtedy, gdy $p = 10^r$, dla pewnego $r \in \N$.
   \end{lemma}
+\end{frame}
+
+\begin{frame}
+  \begin{figure}
+    \subimport{\tmpdatapath}{wheels_rational.tex}
+  \end{figure}
 \end{frame}
 
 \begin{frame}
