@@ -12,6 +12,10 @@ import matplotlib.pyplot as plt
 import common_functions
 
 matplotlib.rcParams['text.usetex'] = True
+matplotlib.rcParams['text.latex.preamble'] = \
+    r'\usepackage{amssymb}' \
+    r'\newcommand{\R}{\mathbb{R}}' \
+    r'\newcommand{\Q}{\mathbb{Q}}'
 
 
 def get_center():
@@ -114,14 +118,14 @@ def make_frame(**kwargs):
     """creates and saves a single frame of rotating wheels animation"""
     cur_angle_a = kwargs['cur_frame_num']*kwargs['d_angle']
     cur_fig = plt.figure()
-    plt.subplots(figsize=(4.5, 3))
+    plt.subplots(figsize=(4.9, 2))
     radius_a = kwargs['radius_a']
     radius_b = kwargs['radius_b']
     draw_wheels(
         radius_a, radius_b,
         cur_angle_a,
         kwargs['max_spoke_num'])
-    arrow_dy = 1.1*max(radius_a, radius_b)
+    arrow_dy = 1.17*max(radius_a, radius_b)
     draw_radius_arrow(
         get_center()[0], get_center()[0]+radius_a, -arrow_dy, '$r_A$')
     draw_radius_arrow(
@@ -138,7 +142,7 @@ def make_frame(**kwargs):
     file_name = f'{kwargs["core_name"]}{kwargs["cur_frame_num"]}.pdf'
     output_folder = kwargs['output_folder']/kwargs['core_name']
     output_folder.mkdir(parents=True, exist_ok=True)
-    plt.savefig(output_folder/file_name, bbox_inches='tight')
+    plt.savefig(output_folder/file_name, bbox_inches='tight', pad_inches=0)
     cur_fig.clf()
     plt.close(cur_fig)
     plt.close()
@@ -157,8 +161,10 @@ def to_latex_fraction(in_value, in_denominator_limit):
 def make_animation_data(**kwargs):
     """prepares data for rotating wheels animation (pdf files and tex)"""
     kwargs['output_folder'].mkdir(parents=True, exist_ok=True)
+
     for _ in range(kwargs['total_frames']):
         make_frame(cur_frame_num=_, **kwargs)
+
     tex_str = \
         '\\animategraphics[autoplay,loop]' \
         f'{{{kwargs["frame_rate"]}}}' \
@@ -170,22 +176,57 @@ def make_animation_data(**kwargs):
         tex_file.write(tex_str)
 
 
-R_A = 5
-R_B = 7
-SCALING_F = 0.3
-TOTAL_ANGLE = R_B//math.gcd(R_A, R_B)*360
+def prepare_rational(in_displayed_max_radius, in_total_frames, in_frame_rate):
+    """
+    generates all data (pdf-frames, tex file) for the animation with
+    rotating wheels with rational radius ratio
+    """
+    r_a = 5
+    r_b = 7
+    scaling_f = in_displayed_max_radius/max(r_a, r_b)
+    total_angle = 360*r_b  # number ow turns of wheel_a*360
+    d_angle = total_angle/in_total_frames
+    make_animation_data(
+        radius_a=scaling_f*r_a,
+        radius_b=scaling_f*r_b,
+        max_spoke_num=max(r_a, r_b),
+        total_frames=in_total_frames,
+        d_angle=d_angle,
+        output_folder=common_functions.get_tmp_data_folder(),
+        core_name='wheels_rational',
+        ratio_to_str_fun=lambda x: to_latex_fraction(x, max(r_a, r_b)),
+        frame_rate=in_frame_rate)
+    return d_angle
 
-TOTAL_FRAMES = 300
-D_ANGLE = TOTAL_ANGLE/TOTAL_FRAMES
-MAIN_OUTPUT_FOLDER = common_functions.get_tmp_data_folder()
 
-make_animation_data(
-    radius_a=SCALING_F*R_A,
-    radius_b=SCALING_F*R_B,
-    max_spoke_num=max(R_A, R_B),
-    total_frames=TOTAL_FRAMES,
-    d_angle=D_ANGLE,
-    output_folder=MAIN_OUTPUT_FOLDER,
-    core_name='wheels_rational',
-    ratio_to_str_fun=lambda x: to_latex_fraction(x, max(R_A, R_B)),
-    frame_rate=20)
+def prepare_irrational(
+        in_displayed_max_radius, in_total_frames, in_frame_rate, in_d_angle):
+    """
+    generates all data (pdf-frames, tex file) for the animation with
+    rotating wheels with rational radius ratio
+    """
+    radius_ratio = 3**0.5-1
+
+    def tmp_num_to_str(in_val):
+        assert in_val == 3**0.5-1
+        return r'\sqrt{3}-1 \in \R \setminus \Q'
+    r_a = 1
+    r_b = r_a/radius_ratio
+    assert r_a/r_b == radius_ratio
+    scaling_f = in_displayed_max_radius/max(r_a, r_b)
+    make_animation_data(
+        radius_a=scaling_f*r_a,
+        radius_b=scaling_f*r_b,
+        max_spoke_num=10,
+        total_frames=in_total_frames,
+        d_angle=in_d_angle,
+        output_folder=common_functions.get_tmp_data_folder(),
+        core_name='wheels_irrational',
+        ratio_to_str_fun=tmp_num_to_str,
+        frame_rate=in_frame_rate)
+
+
+FRAME_RATE = 20
+DISPLAYED_MAX_RAD = 1.5
+D_ANGLE = prepare_rational(DISPLAYED_MAX_RAD, 30, FRAME_RATE)
+prepare_irrational(DISPLAYED_MAX_RAD, 60, FRAME_RATE, D_ANGLE)

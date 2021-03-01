@@ -38,7 +38,7 @@
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
 
-\renewcommand{\gcd}[2]{\mathtt{gcd}\paran{#1, #2}}
+\renewcommand{\gcd}[2]{\mathtt{NWD}\paren{#1, #2}}
 
 \newcommand{\convto}[2]{\xrightarrow[#2]{#1}}
 \newcommand{\TODO}[1]{(\footnote{\texttt{TODO:} #1}!)}
@@ -149,6 +149,16 @@
 \begin{frame}
   \begin{figure}
     \subimport{\tmpdatapath}{wheels_rational.tex}
+  \end{figure}
+  \begin{theorem}
+  Jeżeli $\frac{r_A}{r_B} = \frac{a}{b}$, $\gcd{a}{b} = 1$, to po wykonaniu $b$ obrotów przez koło $A$ ($a$ obrotów przez koło $B$)
+  \textcolor{red}{znaczniki} będą w tym samym położeniu.
+  \end{theorem}
+\end{frame}
+
+\begin{frame}
+  \begin{figure}
+    \subimport{\tmpdatapath}{wheels_irrational.tex}
   \end{figure}
 \end{frame}
 
