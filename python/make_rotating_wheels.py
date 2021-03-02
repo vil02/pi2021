@@ -145,8 +145,7 @@ def make_frame(**kwargs):
     plt.ylim(-arrow_dy-0.3, max(radius_a, radius_b))
     plt.gca().set_aspect('equal', adjustable='box')
     plt.axis('off')
-    fraction_str = kwargs['ratio_to_str_fun'](radius_a/radius_b)
-    plt.title(f'$\\frac{{r_A}}{{r_B}} = {fraction_str}$')
+    plt.title(f'$\\frac{{r_A}}{{r_B}} = {{{kwargs["ratio_str"]}}}$')
     file_name = f'{kwargs["core_name"]}{kwargs["cur_frame_num"]}.pdf'
     output_folder = kwargs['output_folder']/kwargs['core_name']
     output_folder.mkdir(parents=True, exist_ok=True)
@@ -202,7 +201,7 @@ def prepare_rational(in_displayed_max_radius, in_total_frames, in_frame_rate):
         d_angle=d_angle,
         output_folder=common_functions.get_tmp_data_folder(),
         core_name='wheels_rational',
-        ratio_to_str_fun=lambda x: to_latex_fraction(x, max(r_a, r_b)),
+        ratio_str=to_latex_fraction(r_a/r_b, max(r_a, r_b)),
         frame_rate=in_frame_rate)
     return d_angle
 
@@ -230,7 +229,7 @@ def prepare_irrational(
         d_angle=in_d_angle,
         output_folder=common_functions.get_tmp_data_folder(),
         core_name='wheels_irrational',
-        ratio_to_str_fun=tmp_num_to_str,
+        ratio_str=tmp_num_to_str(radius_ratio),
         frame_rate=in_frame_rate)
 
 
