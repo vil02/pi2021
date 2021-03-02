@@ -97,7 +97,7 @@
 \subsection{\define{Zawieranie} się liczb}
 \begin{frame}
   \begin{definition}
-    Niech $a, b \in \N$. $\sqrt{123}$
+    Niech $a, b \in \N$.
     Mówimy, że liczba $a$ \define{zawiera} liczbę $b$,
     jeżeli reprezentacja dziesiętna liczby $b$ jest podłańcuchem reprezentacji dziesiętnej liczby $a$.
   \end{definition}
@@ -199,7 +199,15 @@ Niech $x \in \R$.
   \end{enumerate}
 \end{frame}
 
+\subimport{\tmpdatapath}{fracparts_of_rational_multiples.tex}
+
 \begin{frame}
+  \begin{example}
+    Rozważmy ciąg ${\paren{\fracpart{n\pi}}}_{n \in \N}$.
+    \begin{figure}
+      \subimport{\tmpdatapath}{fracparts_of_irrational_multiples.tex}
+    \end{figure}
+  \end{example}
   \begin{theorem}
     \label{thm::fractional_part_of_multiples_of_irrational_numers_are_dense}
     Jeżeli $\gamma \in \R \setminus \Q$, to ciąg $\paren{\fracpart{n\gamma}}_{n \in \N}$ jest \define{gęsty} w przedziale $[0, 1]$,
