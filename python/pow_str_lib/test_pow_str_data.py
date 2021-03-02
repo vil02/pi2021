@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-tests for pow_str_data
+tests of pow_str_data module
 """
 
 import unittest
@@ -29,7 +29,7 @@ def get_oeis_data(in_url):
 
 class TestPowStrData(unittest.TestCase):
     """
-    unit tests for PowStrData
+    unit tests of pow_str_data.PowStrData
     """
 
     @classmethod
