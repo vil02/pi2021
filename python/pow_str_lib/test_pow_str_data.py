@@ -54,8 +54,7 @@ class TestPowStrData(unittest.TestCase):
             cur_str_pow_data = psd.PowStrData(cur_pow_base)
             for _ in self.oeis_test_data[cur_pow_base]:
                 cur_res = cur_str_pow_data.find_val(_)
-                self.assertAlmostEqual(
-                    cur_res, self.oeis_test_data[cur_pow_base][_])
+                self.assertEqual(cur_res, self.oeis_test_data[cur_pow_base][_])
                 self.assertIn(str(_), str(cur_pow_base**cur_res))
                 self.assertEqual(
                     cur_str_pow_data.get_str(cur_res),
