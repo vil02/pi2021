@@ -32,7 +32,8 @@ class TestPowStrData(unittest.TestCase):
     unit tests for PowStrData
     """
 
-    def setUp(self):
+    @classmethod
+    def setUpClass(cls):
         url_dict = {
             2: 'https://oeis.org/A030000/b030000.txt',
             3: 'https://oeis.org/A062520/b062520.txt',
@@ -42,8 +43,8 @@ class TestPowStrData(unittest.TestCase):
             7: 'https://oeis.org/A062524/b062524.txt',
             8: 'https://oeis.org/A062525/b062525.txt',
             9: 'https://oeis.org/A062526/b062526.txt'}
-        self.oeis_test_data = {_: get_oeis_data(url_dict[_]) for _ in url_dict}
-        self.oeis_test_data[2][9634] = 809
+        cls.oeis_test_data = {_: get_oeis_data(url_dict[_]) for _ in url_dict}
+        cls.oeis_test_data[2][9634] = 809
 
     def test_with_oeis_data(self):
         """
