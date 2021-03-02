@@ -155,16 +155,6 @@ def make_frame(**kwargs):
     plt.close()
 
 
-def to_latex_fraction(in_value, in_denominator_limit):
-    """
-    returns a tex-like string representing in_value as a fraction
-    with the denominator nor greater than in_denominator_limit
-    """
-    ratio_val = \
-        fractions.Fraction(in_value).limit_denominator(in_denominator_limit)
-    return f'\\frac{{{ratio_val.numerator}}}{{{ratio_val.denominator}}}'
-
-
 def make_animation_data(**kwargs):
     """prepares data for rotating wheels animation (pdf files and tex)"""
     kwargs['output_folder'].mkdir(parents=True, exist_ok=True)
@@ -201,7 +191,7 @@ def prepare_rational(in_displayed_max_radius, in_total_frames, in_frame_rate):
         d_angle=d_angle,
         output_folder=common_functions.get_tmp_data_folder(),
         core_name='wheels_rational',
-        ratio_str=to_latex_fraction(r_a/r_b, max(r_a, r_b)),
+        ratio_str=common_functions.to_latex_fraction(r_a/r_b, max(r_a, r_b)),
         frame_rate=in_frame_rate)
     return d_angle
 
