@@ -99,7 +99,7 @@ def generate_rational_data():
     output_folder = common_functions.get_tmp_data_folder()
     core_name = 'fracparts_of_rational_multiples'
     frame_num_limit = denom_val+3
-    for _ in range(0, frame_num_limit):
+    for _ in range(frame_num_limit):
         create_single_plot(
             in_value=numer_val/denom_val,
             in_value_str=value_str,
@@ -118,7 +118,7 @@ def generate_rational_data():
         '      \\begin{overprint}\n'
     for _ in range(frame_num_limit):
         cur_str = \
-            f'        \\onslide<{_}>' \
+            f'        \\onslide<{_+1}>' \
             r'\centerline{\includegraphics{' \
             f'{core_name}/{core_name}{_}.pdf' \
             '}}\n'
