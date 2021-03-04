@@ -41,7 +41,7 @@ def create_single_plot(**kwargs):
         matplotlib.pyplot.text(
             x_pos, y_pos, in_str,
             horizontalalignment='center', verticalalignment=y_alignment)
-    cur_fig = plt.figure(figsize=(5.4, 1))
+    cur_fig = plt.figure(figsize=(6.3, 0.6))
     plt.axis('off')
 
     main_color = [0, 0, 0]
@@ -73,7 +73,7 @@ def create_single_plot(**kwargs):
     plt.title(
         f'$$\\fracpart{{{fracpart_arg_str}}} = {cur_value_str}$$',
         color=title_color)
-    d_x_lim = 0.12
+    d_x_lim = 0.08
     plt.xlim([-d_x_lim, 1+d_x_lim])
     plt.ylim([-long_tick_size, 3*long_tick_size])
     output_folder = kwargs['output_folder']/kwargs['core_name']
@@ -119,7 +119,7 @@ def generate_rational_data():
     for _ in range(frame_num_limit):
         cur_str = \
             f'        \\onslide<{_+1}>' \
-            r'\centerline{\includegraphics{' \
+            r'\centerline{\includegraphics[width=\textwidth]{' \
             f'{core_name}/{core_name}{_}.pdf' \
             '}}\n'
         tex_str += cur_str
@@ -170,7 +170,7 @@ def generate_irrational_data():
             output_folder=output_folder,
             core_name=core_name)
     tex_str = \
-        r'\animategraphics[autoplay,loop]' \
+        r'\animategraphics[autoplay, loop, width=\textwidth]' \
         f'{{{frame_rate}}}' \
         f'{{./{core_name}/{core_name}}}' \
         f'{{0}}{{{frame_num_limit-1}}}'
