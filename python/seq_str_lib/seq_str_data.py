@@ -17,6 +17,7 @@ class SeqStrData:
 
     @property
     def seq_offset(self):
+        """getter for self._seq_offset"""
         return self._seq_offset
 
     def get_str(self, in_n):
