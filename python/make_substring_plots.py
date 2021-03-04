@@ -69,7 +69,7 @@ def make_substring_plot(named_ssd_obj, value_range, seq_num_range):
         {
             'marker': '.',
             'linestyle': '',
-            'markersize': 3
+            'markersize': 1.9
         }
     plt.plot(
         x_data_contains, y_data_contains,
@@ -92,7 +92,7 @@ def prepare_frame_data(named_ssd_obj, in_output_folder):
 
     """
     cur_fig = plt.figure()
-    make_substring_plot(named_ssd_obj, range(0, 130), range(0, 72))
+    make_substring_plot(named_ssd_obj, range(0, 200), range(0, 74))
     pdf_file_name = f'substr_plot_{named_ssd_obj}.pdf'
     pdf_subfolder_name = 'substring_plots'
     pdf_output_folder = in_output_folder/pdf_subfolder_name
@@ -104,7 +104,7 @@ def prepare_frame_data(named_ssd_obj, in_output_folder):
         '\\begin{frame}\n' \
         '  \\begin{figure}\n' \
         '    \\centering\n' \
-        f'    \\includegraphics[width=\\textwidth]'\
+        f'    \\includegraphics[width=\\textwidth]' \
         f'{{./{pdf_subfolder_name}/{pdf_file_name}}}\n' \
         '    \\caption{Punkt $(x, y)$ jest zaznaczony na ' \
         '\\textcolor{red}{czerwono}, jeżeli $x$ zawiera się w ' \
