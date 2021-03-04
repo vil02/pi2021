@@ -57,6 +57,17 @@ def get_named_exp_str_data(in_exp_base):
         'wykładnik')
 
 
+def get_named_pow_str_data(in_exp_value):
+    """
+    NamedSeqStrData variand of ssd.get_pow_str_data
+    """
+    return NamedSeqStrData(
+        ssd.get_pow_str_data(in_exp_value),
+        f'seq_n_to_pow_{in_exp_value}',
+        lambda in_arg_str: f'{{{in_arg_str}}}^{{{in_exp_value}}}',
+        'podstawa potęgi')
+
+
 def make_substring_plot(named_ssd_obj, value_range, seq_num_range):
     """
     creates a plot on which the points (x, y) are highlighter iff
@@ -140,4 +151,18 @@ def prepare_exp_substr_plots():
         all_frames_file.write('\n\n'.join(tex_str_list))
 
 
+def prepare_pow_substr_plots():
+    """prepares substring plots for the sequences power_base**n"""
+    output_folder = cf.get_config_parameter('tmpDataFolder')
+
+    power_base_range = range(2, 4)
+    tex_str_list = \
+        [prepare_frame_data(get_named_pow_str_data(_), output_folder)
+         for _ in power_base_range]
+    with open(output_folder/cf.get_config_parameter('powSubstrPlotsTex'),
+              'w',  encoding='utf-8') as all_frames_file:
+        all_frames_file.write('\n\n'.join(tex_str_list))
+
+
 prepare_exp_substr_plots()
+prepare_pow_substr_plots()
