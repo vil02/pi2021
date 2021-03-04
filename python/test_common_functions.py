@@ -60,6 +60,13 @@ class TestCommonFunctions(unittest.TestCase):
             common_functions.get_config_parameter('tmpDataFolder'),
             pathlib.Path)
 
+    def test_to_core_name(self):
+        """
+        test of common_functions.to_core_name
+        """
+        for _ in ['some_name', 'tex', 'tex_', 'a']:
+            self.assertEqual(common_functions.to_core_name(_+'.tex'), _)
+
 
 if __name__ == '__main__':
     unittest.main()
