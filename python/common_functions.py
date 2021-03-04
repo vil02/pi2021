@@ -8,11 +8,6 @@ import fractions
 import re
 
 
-def get_tmp_data_folder():
-    """returns the main path for all tmp_data for the presentation"""
-    return pathlib.Path(__file__).parents[1]/'tmp_data'
-
-
 def to_latex_fraction(in_value, in_denominator_limit, in_eps=10**-10):
     """
     returns a tex-like string representing in_value as a fraction
@@ -67,9 +62,18 @@ def read_paths_and_names():
     for _ in open(config_file_path).readlines():
         proc_single_line(_)
     for _ in res:
-        if 'Folder' in _:
+        if _.endswith('Folder'):
             res[_] = latex_folder/pathlib.Path(res[_])
+
     return res
+
+
+def to_core_name(in_str):
+    """
+    returns the core name of given tex-file
+    """
+    assert in_str.endswith('.tex')
+    return in_str[0:-4]
 
 
 def get_config_parameter(in_parameter_name):

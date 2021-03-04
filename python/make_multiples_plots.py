@@ -12,7 +12,7 @@ import matplotlib
 import matplotlib.patches
 import matplotlib.pyplot as plt
 
-import common_functions
+import common_functions as cf
 
 matplotlib.rcParams['text.usetex'] = True
 matplotlib.rcParams['text.latex.preamble'] = \
@@ -94,18 +94,18 @@ def generate_rational_data():
     numer_val = 5
     denom_val = 7
     assert math.gcd(numer_val, denom_val) == 1
-    value_str = \
-        common_functions.to_latex_fraction(numer_val/denom_val, denom_val)
-    output_folder = common_functions.get_tmp_data_folder()
-    core_name = 'fracparts_of_rational_multiples'
+    value_str = cf.to_latex_fraction(numer_val/denom_val, denom_val)
+    output_folder = cf.get_config_parameter('tmpDataFolder')
+    output_file_name = \
+        cf.get_config_parameter('fracPartsOfRationalMultiplesTex')
+    core_name = cf.to_core_name(output_file_name)
     frame_num_limit = denom_val+3
     for _ in range(frame_num_limit):
         create_single_plot(
             in_value=numer_val/denom_val,
             in_value_str=value_str,
             in_plot_num=_,
-            value_to_str_fun=lambda x: common_functions.to_latex_fraction(
-                x, denom_val),
+            value_to_str_fun=lambda x: cf.to_latex_fraction(x, denom_val),
             output_folder=output_folder,
             core_name=core_name)
     tex_str = \
@@ -129,8 +129,7 @@ def generate_rational_data():
         '  \\end{example}\n' \
         '\\end{frame}\n'
     with open(
-            output_folder/f'{core_name}.tex', 'w',
-            encoding='utf-8') as tex_file:
+            output_folder/output_file_name, 'w', encoding='utf-8') as tex_file:
         tex_file.write(tex_str)
 
 
@@ -151,9 +150,11 @@ def generate_irrational_data():
     value_set = set()
     value_str_set = set()
     frame_num_limit = 30
-    core_name = 'fracparts_of_irrational_multiples'
+    output_file_name = \
+        cf.get_config_parameter('fracPartsOfIrrationalMultiplesTex')
+    core_name = cf.to_core_name(output_file_name)
     frame_rate = 1
-    output_folder = common_functions.get_tmp_data_folder()
+    output_folder = cf.get_config_parameter('tmpDataFolder')
     for _ in range(0, frame_num_limit):
         cur_val = fractional_part(_*core_value)
         assert cur_val not in value_set
@@ -174,8 +175,7 @@ def generate_irrational_data():
         f'{{./{core_name}/{core_name}}}' \
         f'{{0}}{{{frame_num_limit-1}}}'
     with open(
-            output_folder/f'{core_name}.tex', 'w',
-            encoding='utf-8') as tex_file:
+            output_folder/output_file_name, 'w', encoding='utf-8') as tex_file:
         tex_file.write(tex_str)
 
 

@@ -9,7 +9,7 @@ import matplotlib
 import matplotlib.patches
 import matplotlib.pyplot as plt
 
-import common_functions
+import common_functions as cf
 
 matplotlib.rcParams['text.usetex'] = True
 matplotlib.rcParams['text.latex.preamble'] = \
@@ -183,15 +183,16 @@ def prepare_rational(in_displayed_max_radius, in_total_frames, in_frame_rate):
     scaling_f = in_displayed_max_radius/max(r_a, r_b)
     total_angle = 360*r_b  # number ow turns of wheel_a*360
     d_angle = total_angle/in_total_frames
+    core_name = cf.to_core_name(cf.get_config_parameter('wheelsRationalTex'))
     make_animation_data(
         radius_a=scaling_f*r_a,
         radius_b=scaling_f*r_b,
         max_spoke_num=max(r_a, r_b),
         total_frames=in_total_frames,
         d_angle=d_angle,
-        output_folder=common_functions.get_tmp_data_folder(),
-        core_name='wheels_rational',
-        ratio_str=common_functions.to_latex_fraction(r_a/r_b, max(r_a, r_b)),
+        output_folder=cf.get_config_parameter('tmpDataFolder'),
+        core_name=core_name,
+        ratio_str=cf.to_latex_fraction(r_a/r_b, max(r_a, r_b)),
         frame_rate=in_frame_rate)
     return d_angle
 
@@ -211,14 +212,15 @@ def prepare_irrational(
     r_b = r_a/radius_ratio
     assert r_a/r_b == radius_ratio
     scaling_f = in_displayed_max_radius/max(r_a, r_b)
+    core_name = cf.to_core_name(cf.get_config_parameter('wheelsIrrationalTex'))
     make_animation_data(
         radius_a=scaling_f*r_a,
         radius_b=scaling_f*r_b,
         max_spoke_num=10,
         total_frames=in_total_frames,
         d_angle=in_d_angle,
-        output_folder=common_functions.get_tmp_data_folder(),
-        core_name='wheels_irrational',
+        output_folder=cf.get_config_parameter('tmpDataFolder'),
+        core_name=core_name,
         ratio_str=tmp_num_to_str(radius_ratio),
         frame_rate=in_frame_rate)
 

@@ -7,7 +7,7 @@ import itertools
 import matplotlib.pyplot as plt
 import matplotlib
 
-import common_functions
+import common_functions as cf
 
 from seq_str_lib import seq_str_data as ssd
 
@@ -31,6 +31,9 @@ class NamedSeqStrData(ssd.SeqStrData):
 
     @property
     def argument_name(self):
+        """
+        getter for self._argument_name
+        """
         return self._argument_name
 
     def __str__(self):
@@ -126,14 +129,14 @@ def prepare_frame_data(named_ssd_obj, in_output_folder):
 
 def prepare_exp_substr_plots():
     """prepares substring plots for the sequences power_base**n"""
-    output_folder = \
-        common_functions.get_tmp_data_folder()
+    output_folder = cf.get_config_parameter('tmpDataFolder')
+
     power_base_range = range(2, 12)
     tex_str_list = \
         [prepare_frame_data(get_named_exp_str_data(_), output_folder)
          for _ in power_base_range]
-    with open(output_folder/'exp_substr_plots.tex', 'w',  encoding='utf-8') \
-            as all_frames_file:
+    with open(output_folder/cf.get_config_parameter('expSubstrPlotsTex'),
+              'w',  encoding='utf-8') as all_frames_file:
         all_frames_file.write('\n\n'.join(tex_str_list))
 
 
