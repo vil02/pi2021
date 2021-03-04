@@ -24,23 +24,23 @@ class TestCommonFunctions(unittest.TestCase):
         """
         test of common_functions.to_latex_fraction for positive fraction input
         """
-        for (a, b) in itertools.product(
+        for (num, den) in itertools.product(
                 range(1, self.test_size), range(2, self.test_size)):
-            if math.gcd(a, b) == 1:
+            if math.gcd(num, den) == 1:
                 self.assertEqual(
-                    common_functions.to_latex_fraction(a/b, b),
-                    f"\\frac{{{a}}}{{{b}}}")
+                    common_functions.to_latex_fraction(num/den, den),
+                    f"\\frac{{{num}}}{{{den}}}")
 
     def test_to_latex_fraction_negative_fractions(self):
         """
         test of common_functions.to_latex_fraction for negative fraction input
         """
-        for (a, b) in itertools.product(
+        for (num, den) in itertools.product(
                 range(-self.test_size-1), range(-self.test_size-1, 2)):
-            if math.gcd(a, b) == 1:
+            if math.gcd(num, den) == 1:
                 self.assertEqual(
-                    common_functions.to_latex_fraction(a/b, b),
-                    f"-\\frac{{{a}}}{{{b}}}")
+                    common_functions.to_latex_fraction(num/den, den),
+                    f"-\\frac{{{num}}}{{{den}}}")
 
     def test_to_latex_fraction_integers(self):
         """
