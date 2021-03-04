@@ -62,7 +62,7 @@ def create_single_plot(**kwargs):
     cur_value_str = kwargs['value_to_str_fun'](cur_value)
     if kwargs['in_plot_num'] > 0:
         title_color = main_color
-        plot_tick(cur_value, long_tick_size, color=[1, 0, 0])
+        plot_tick(cur_value, short_tick_size, color=[1, 0, 0])
         place_label(
             cur_value, long_tick_size+label_gap,
             f'${cur_value_str}$')
@@ -70,9 +70,9 @@ def create_single_plot(**kwargs):
     if kwargs['in_plot_num'] != 1:
         fracpart_arg_str = \
             f'{kwargs["in_plot_num"]}\\cdot{kwargs["in_value_str"]}'
-    title_str = \
-        f'$$\\fracpart{{{fracpart_arg_str}}} = {cur_value_str}$$'
-    plt.title(title_str, color=title_color)
+    plt.title(
+        f'$$\\fracpart{{{fracpart_arg_str}}} = {cur_value_str}$$',
+        color=title_color)
     d_x_lim = 0.12
     plt.xlim([-d_x_lim, 1+d_x_lim])
     plt.ylim([-long_tick_size, 3*long_tick_size])
