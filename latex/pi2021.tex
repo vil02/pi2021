@@ -1,4 +1,4 @@
-\documentclass{beamer}
+\documentclass[aspectratio=169]{beamer}
 \usepackage{polski}
 \usepackage[utf8]{inputenc}
 \usepackage{amssymb}
@@ -59,11 +59,12 @@
 \newcommand{\abs}[1]{\left| #1 \right|}
 \newcommand{\email}[1]{\href{mailto: #1}{\texttt{#1}}}
 
-\newcommand{\tmpdatapath}{../tmp_data/}
 
 \renewcommand*\footnoterule{}
 
 \setbeamertemplate{theorems}[numbered]
+
+\input{paths_and_names.tex}
 
 \usetheme{Montpellier}
 
@@ -84,7 +85,7 @@
   \insertshorttitle\hfill%
   \texttt{\insertframenumber}}
 
-
+\setbeamercolor{background canvas}{bg=violet!20}
 \begin{document}
 \begin{frame}[plain]
 \maketitle
@@ -120,12 +121,10 @@
     \item 70000000 zawiera się w $2^{9452}$,
     \item 2000000000 zawiera się w $2^{100824}$.
   \end{enumerate}
-  Czy prawdą jest, że dla dowolnej liczby $n \in \N$ istnieje taki wykładnik $w \in \N$, że liczba $2^p$ zawiera liczbę $n$?
+  Czy prawdą jest, że dla dowolnej liczby $n \in \N$ istnieje taki wykładnik $w \in \N$, że liczba $2^w$ zawiera liczbę $n$?
 \end{frame}
 
-\subimport{\tmpdatapath}{exp_substr_plots.tex}
-
-
+\subimport{\tmpdatapath}{\expSubstrPlotsTex}
 
 \section{Rozstrzygnięcie problemu}
 \section{Główne twierdzenie}
@@ -148,7 +147,7 @@
 
 \begin{frame}
   \begin{figure}
-    \subimport{\tmpdatapath}{wheels_rational.tex}
+    \subimport{\tmpdatapath}{\wheelsRationalTex}
   \end{figure}
   \begin{theorem}
   Jeżeli $\frac{r_A}{r_B} = \frac{a}{b}$, $\gcd{a}{b} = 1$, to po wykonaniu $b$ obrotów przez koło $A$ ($a$ obrotów przez koło $B$)
@@ -158,7 +157,7 @@
 
 \begin{frame}
   \begin{figure}
-    \subimport{\tmpdatapath}{wheels_irrational.tex}
+    \subimport{\tmpdatapath}{\wheelsIrrationalTex}
   \end{figure}
 \end{frame}
 
@@ -199,13 +198,13 @@ Niech $x \in \R$.
   \end{enumerate}
 \end{frame}
 
-\subimport{\tmpdatapath}{fracparts_of_rational_multiples.tex}
+\subimport{\tmpdatapath}{\fracPartsOfRationalMultiplesTex}
 
 \begin{frame}
   \begin{example}
     Rozważmy ciąg ${\paren{\fracpart{n\pi}}}_{n \in \N}$.
     \begin{figure}
-      \subimport{\tmpdatapath}{fracparts_of_irrational_multiples.tex}
+      \subimport{\tmpdatapath}{\fracPartsOfIrationalMultiplesTex}
     \end{figure}
   \end{example}
   \begin{theorem}
