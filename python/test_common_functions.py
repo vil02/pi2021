@@ -6,6 +6,7 @@ tests of common_functions module
 import unittest
 import math
 import itertools
+import pathlib
 
 import common_functions
 
@@ -50,6 +51,14 @@ class TestCommonFunctions(unittest.TestCase):
             self.assertEqual(
                 common_functions.to_latex_fraction(cur_val, max_denom),
                 str(cur_val))
+
+    def test_get_config_parameter(self):
+        """
+        very limited test of common_functions.get_config_parameter
+        """
+        self.assertIsInstance(
+            common_functions.get_config_parameter('tmpDataFolder'),
+            pathlib.Path)
 
 
 if __name__ == '__main__':
