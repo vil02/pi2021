@@ -26,21 +26,26 @@ matplotlib.rcParams['text.latex.preamble'] = \
     r'\def\sqrt{\mathpalette\DHLhksqrt}'
 
 
-def get_center():
-    """returns the centre of the "left" wheel"""
-    return (0, 0)
+def get_arrow_basic_params():
+    """arrows parameters used in this script"""
+    return dict(
+        width=0.02,
+        head_width=0.2,
+        head_length=0.3,
+        length_includes_head=True,
+        overhang=0.3,
+        linewidth=0)
 
 
 def make_wheel(**kwargs):
     """draws single wheel"""
-    center = get_center()
 
     def get_single_spoke(in_spoke_num):
         spoke_length = kwargs['inner_radius']
         cur_angle = 2*math.pi*in_spoke_num/kwargs['number_of_spokes']
         x_end = spoke_length*math.cos(cur_angle)
         y_end = spoke_length*math.sin(cur_angle)
-        return (center, [x_end, y_end])
+        return ((0, 0), [x_end, y_end])
     spoke_list = matplotlib.collections.LineCollection(
         (get_single_spoke(_) for _ in range(kwargs['number_of_spokes'])),
         linewidth=kwargs['spoke_width'],
@@ -48,23 +53,22 @@ def make_wheel(**kwargs):
         zorder=0)
     tire_width = kwargs['outer_radius']-kwargs['inner_radius']
     tire = matplotlib.patches.Wedge(
-        center, kwargs['outer_radius'], 0, 360,
+        (0, 0), kwargs['outer_radius'], 0, 360,
         tire_width, zorder=10)
     tire_collection = matplotlib.collections.PatchCollection(
         [tire], color=kwargs['tire_color'], linewidth=0)
-    marker = matplotlib.patches.Circle(
-        [center[0]+kwargs['outer_radius']-tire_width/2, center[1]],
-        kwargs['marker_radius'],
-        zorder=20)
+    marker = matplotlib.patches.FancyArrow(
+        kwargs['outer_radius']/2, 0,
+        kwargs['outer_radius']/2, 0,
+        **get_arrow_basic_params())
     marker_collection = matplotlib.collections.PatchCollection(
-        [marker], color=kwargs['marker_color'])
+        [marker], facecolor=kwargs['marker_color'], edgecolor='none')
     return [spoke_list, tire_collection, marker_collection]
 
 
 def call_make_wheel(in_outer_radius, in_number_of_spokes):
     """calls make_wheel with some standard parameters"""
     inner_radius = 0.8*in_outer_radius
-    marker_radius = 0.7*(in_outer_radius-inner_radius)/2
     return make_wheel(
         outer_radius=in_outer_radius,
         inner_radius=inner_radius,
@@ -72,7 +76,6 @@ def call_make_wheel(in_outer_radius, in_number_of_spokes):
         number_of_spokes=in_number_of_spokes,
         spokes_color=[0.7, 0.7, 0.7],
         tire_color=[0.1, 0.2, 0],
-        marker_radius=marker_radius,
         marker_color=[1, 0, 0])
 
 
@@ -82,14 +85,15 @@ def draw_wheels(radius_a, radius_b, angle_a, max_spoke_num):
         fractions.Fraction(radius_a/radius_b).limit_denominator(max_spoke_num)
     wheel_a = call_make_wheel(radius_a, radius_ratio.numerator)
     wheel_b = call_make_wheel(radius_b, radius_ratio.denominator)
-    wheel_b_shift = radius_a+radius_b
     angle_b = -radius_a/radius_b*angle_a+180
     cur_ax = plt.gca()
     transform_a = \
-        matplotlib.transforms.Affine2D().rotate_deg(angle_a)+cur_ax.transData
+        matplotlib.transforms.Affine2D().rotate_deg(angle_a) + \
+        matplotlib.transforms.Affine2D().translate(-radius_a, 0) + \
+        cur_ax.transData
     transform_b = \
         matplotlib.transforms.Affine2D().rotate_deg(angle_b) + \
-        matplotlib.transforms.Affine2D().translate(wheel_b_shift, 0) + \
+        matplotlib.transforms.Affine2D().translate(radius_b, 0) + \
         cur_ax.transData
     for _ in wheel_a:
         _.set_transform(transform_a)
@@ -99,27 +103,49 @@ def draw_wheels(radius_a, radius_b, angle_a, max_spoke_num):
         cur_ax.add_collection(_)
 
 
-def draw_radius_arrow(x_end_a, x_end_b, y_pos, in_str):
+# def draw_radius_arrow(x_end_a, x_end_b, y_pos, in_str):
+#     """draws an around indicating the wheel radius"""
+#     arrow_params = dict(
+#         width=0.02,
+#         head_width=0.2,
+#         head_length=0.3,
+#         length_includes_head=True,
+#         overhang=0.3,
+#         linewidth=0,
+#         color=[0, 0, 0])
+#     x_middle = (x_end_a+x_end_b)/2
+#     matplotlib.pyplot.arrow(
+#         x_middle, y_pos,
+#         x_end_a-x_middle, 0,
+#         **arrow_params)
+#     matplotlib.pyplot.arrow(
+#         x_middle, y_pos,
+#         x_end_b-x_middle, 0,
+#         **arrow_params)
+#     matplotlib.pyplot.text(
+#         x_middle, y_pos+0.2, in_str, horizontalalignment='center')
+
+
+def draw_vertical_radius_arrow(x_pos, y_end_a, y_end_b, in_str, x_label_shift):
     """draws an around indicating the wheel radius"""
-    arrow_params = dict(
-        width=0.02,
-        head_width=0.2,
-        head_length=0.3,
-        length_includes_head=True,
-        overhang=0.3,
-        linewidth=0,
-        color=[0, 0, 0])
-    x_middle = (x_end_a+x_end_b)/2
+    arrow_params = get_arrow_basic_params()
+    arrow_params['color'] = [0, 0, 0]
+    y_middle = (y_end_a+y_end_b)/2
     matplotlib.pyplot.arrow(
-        x_middle, y_pos,
-        x_end_a-x_middle, 0,
+        x_pos, y_middle,
+        0, y_end_a-y_middle,
         **arrow_params)
     matplotlib.pyplot.arrow(
-        x_middle, y_pos,
-        x_end_b-x_middle, 0,
+        x_pos, y_middle,
+        0, y_end_b-y_middle,
         **arrow_params)
+    horizontalalignment = 'right'
+    if x_label_shift < 0:
+        horizontalalignment = 'left'
     matplotlib.pyplot.text(
-        x_middle, y_pos+0.2, in_str, horizontalalignment='center')
+        x_pos+x_label_shift, y_middle,
+        in_str,
+        verticalalignment='center', horizontalalignment=horizontalalignment)
 
 
 def make_frame(**kwargs):
@@ -133,16 +159,15 @@ def make_frame(**kwargs):
         radius_a, radius_b,
         cur_angle_a,
         kwargs['max_spoke_num'])
-    arrow_dy = 1.17*max(radius_a, radius_b)
-    draw_radius_arrow(
-        get_center()[0], get_center()[0]+radius_a, -arrow_dy, '$r_A$')
-    draw_radius_arrow(
-        get_center()[0]+radius_a+radius_b,
-        get_center()[0]+radius_a, -arrow_dy,
-        '$r_B$')
-    plt.xlim(-radius_a, radius_a+2*radius_b)
+    arrow_dx = 0.1*max(radius_a, radius_b)
+    label_dx = 0.33
+    draw_vertical_radius_arrow(
+        -2*radius_a-arrow_dx, 0, radius_a, '$r_A$', -label_dx)
+    draw_vertical_radius_arrow(
+        2*radius_b+arrow_dx, 0, radius_b, '$r_B$', label_dx)
 
-    plt.ylim(-arrow_dy-0.3, max(radius_a, radius_b))
+    plt.xlim([-2*radius_a-arrow_dx-label_dx, 2*radius_b+arrow_dx+label_dx])
+    plt.ylim(-max(radius_a, radius_b), max(radius_a, radius_b))
     plt.gca().set_aspect('equal', adjustable='box')
     plt.axis('off')
     plt.title(f'$\\frac{{r_A}}{{r_B}} = {{{kwargs["ratio_str"]}}}$')
@@ -227,5 +252,5 @@ def prepare_irrational(
 
 FRAME_RATE = 20
 DISPLAYED_MAX_RAD = 1.5
-D_ANGLE = prepare_rational(DISPLAYED_MAX_RAD, 30, FRAME_RATE)
-prepare_irrational(DISPLAYED_MAX_RAD, 60, FRAME_RATE, D_ANGLE)
+D_ANGLE = prepare_rational(DISPLAYED_MAX_RAD, 3, FRAME_RATE)
+prepare_irrational(DISPLAYED_MAX_RAD, 6, FRAME_RATE, D_ANGLE)
