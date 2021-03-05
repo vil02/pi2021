@@ -85,7 +85,7 @@
   \insertshorttitle\hfill%
   \texttt{\insertframenumber}}
 
-\setbeamercolor{background canvas}{bg=violet!20}
+%\setbeamercolor{background canvas}{bg=violet!20}
 \begin{document}
 \begin{frame}[plain]
 \maketitle
@@ -124,6 +124,8 @@
   Czy prawdą jest, że dla dowolnej liczby $n \in \N$ istnieje taki wykładnik $w \in \N$, że liczba $2^w$ zawiera liczbę $n$?
 \end{frame}
 
+\section{Symulacje komputerowe}
+
 \subimport{\tmpDataFolder}{\expSubstrPlotsTex}
 
 \section{Rozstrzygnięcie problemu}
@@ -145,6 +147,9 @@
   \end{lemma}
 \end{frame}
 
+\section{\texorpdfstring{Przygotowania do dowodu lematu~\protect\ref{lemma::powers_begin_with_every_string}}{Przygotowania do dowodu głównego lematu}}
+\subsection{Liczby wymierne i niewymierne}
+
 \begin{frame}
   \begin{figure}
     \subimport{\tmpDataFolder}{\wheelsRationalTex}
@@ -161,15 +166,18 @@
   \end{figure}
 \end{frame}
 
+\subsection{Część ułamkowa liczby}
+
 \begin{frame}
 \begin{definition}
 Niech $x \in \R$.
 \define{Częścią całkowitą liczby} $x$ nazywamy największą liczbę całkowitą nie większą niż $x$ i oznaczamy symbolem $\floor{x}$.
 
 \define{Część ułamkową liczby} $x$ definiujemy wzorem
-\begin{equation*}
+\begin{equation}
+\label{eq::frac_part_definition}
 \fracpart{x} = x-\floor{x} \in \left[0, 1\right).
-\end{equation*}
+\end{equation}
 \end{definition}
 \begin{example}
   \begin{enumerate}[label=\enumsymbol]
@@ -178,24 +186,6 @@ Niech $x \in \R$.
     \item $\floor{-4{,}25} = -5$, $\fracpart{-4{,}25} = 0{,}75$, 
   \end{enumerate}
 \end{example}
-\end{frame}
-
-\begin{frame}
-  \begin{equation*}
-    10^w = x \iff \log_{10}x = w,
-  \end{equation*}
-  \begin{enumerate}[label=\enumsymbol]
-    \item $\log_{10}100 = 2$, bo $10^2 = 100$,
-    \item $\log_{10}10^\alpha = \alpha \quad \paren{\alpha \in \R}$,
-    \item $\log_{10}2 = 0{,}30102\ldots{} \stackrel{\text{Lemat~\ref{lemma::log_10_irrational_iff}}}{\in} \R \setminus \Q$,
-    \item $\log_{10}3 = 0{,}47712\ldots{} \stackrel{\text{Lemat~\ref{lemma::log_10_irrational_iff}}}{\in} \R \setminus \Q$,
-    \item $\log_{10}4 = 0{,}60205\ldots{} \stackrel{\text{Lemat~\ref{lemma::log_10_irrational_iff}}}{\in} \R \setminus \Q$,
-    \item $10^{\log_{10}\alpha} = \alpha \quad \paren{\alpha \in \R}$,
-    \item $10^{\log_{10}p^w} = p^w \quad \paren{p, w \in \N}$,
-    \item $10^{w_1+w_2} = 10^{w_1} \cdot 10^{w_2} \quad \paren{w_1, w_2 \in \R}$,
-    \item $\log_{10} x_1 x_2 = \log_{10}x_1+\log_{10}x_2 \quad \paren{x_1, x_2 > 0}$,
-    \item $\log_{10}{p^w} = w \log_{10}p  \quad \paren{w_1, w_2 \in \R}$
-  \end{enumerate}
 \end{frame}
 
 \subimport{\tmpDataFolder}{\fracPartsOfRationalMultiplesTex}
@@ -214,16 +204,35 @@ Niech $x \in \R$.
   \end{theorem}
 \end{frame}
 
+\subsection{Logarytmy dziesiętne}
+
+\begin{frame}
+  \begin{equation*}
+    10^w = s \iff \log_{10}s = w,
+  \end{equation*}
+  \begin{enumerate}[label=$\mathbf{P}_{\arabic*}$]
+    \item[\enumsymbol] $\log_{10}100 = 2$, bo $10^2 = 100$,
+    \item[\enumsymbol] $\log_{10}10^\alpha = \alpha \quad \paren{\alpha \in \R}$,
+    \item[\enumsymbol] $\log_{10}2 = 0{,}30102\ldots{}, \log_{10}3 = 0{,}47712\ldots{}, \log_{10}4 = 0{,}60205\ldots{}  \stackrel{\text{Lemat~\ref{lemma::log_10_irrational_iff}}}{\in} \R \setminus \Q$,
+    \item[\enumsymbol] $10^{\log_{10}\alpha} = \alpha \quad \paren{\alpha \in \R}$,
+    \item\label{eq::log_is_inverse_to_exp} $10^{\log_{10}p^w} = p^w \quad \paren{p, w \in \N}$,
+    \item\label{eq::exp_of_sum} $10^{w_1+w_2} = 10^{w_1} \cdot 10^{w_2} \quad \paren{w_1, w_2 \in \R}$,
+    \item[\enumsymbol] $\log_{10} x_1 x_2 = \log_{10}x_1+\log_{10}x_2 \quad \paren{x_1, x_2 > 0}$,
+    \item\label{eq::log_of_pow} $\log_{10}{p^w} = w \log_{10}p  \quad \paren{w_1, w_2 \in \R}$
+  \end{enumerate}
+\end{frame}
+
+\section{\texorpdfstring{Dowód lematu~\protect\ref{lemma::powers_begin_with_every_string}}{Dowód głównego lematu}}
 
 \begin{frame}
   \begin{proof}[Dowód lematu~\ref{lemma::powers_begin_with_every_string}]
     \begin{align*}
-      p^w &= 10^{\log_{10}p^w} = 10^{w \log_{10} p} = 10^{\floor{w \log_{10} p} + \fracpart{w \log_{10} p}} \\
-          &= \underbrace{10^{\floor{w \log_{10} p}}}_{10\ldots 0}\cdot10^{\fracpart{w \log_{10} p}}.
+      p^w &\stackrel{\eqref{eq::log_is_inverse_to_exp}}{=} 10^{\log_{10}p^w} \stackrel{\eqref{eq::log_of_pow}}{=} 10^{w \log_{10} p} \stackrel{\eqref{eq::frac_part_definition}}{=} 10^{\floor{w \log_{10} p} + \fracpart{w \log_{10} p}} \\
+          &\stackrel{\eqref{eq::exp_of_sum}}{=} \underbrace{10^{\floor{w \log_{10} p}}}_{10\ldots 0}\cdot10^{\fracpart{w \log_{10} p}}.
     \end{align*}
     \begin{enumerate}[label=\enumsymbol]
       \item $10^{\log_{10} 1{,}2345} = 1{,}2345$,
-      \item $10^{\log_{10} c_1,c_2c_3c_3 \ldots{} c_l} = c_1,c_2c_3c_3 \ldots{} c_l$.
+      \item $10^{\log_{10} c_1{,}c_2c_3c_3 \ldots{} c_l} = c_1{,}c_2c_3c_3 \ldots{} c_l$.
     \end{enumerate}
     Niech $n = c_1c_2c_3 \ldots{} c_l$, wobec twierdzenia~\ref{thm::fractional_part_of_multiples_of_irrational_numers_are_dense} istnieje $w > \frac{l}{\log_{10}p}$ takie, że
     $\fracpart{w \log_{10} p}$ jest \textit{wystarczająco dobrym} przybliżeniem $\log_{10}{c_1{,}c_2c_3c_3 \ldots{} c_l}$.  
@@ -231,7 +240,11 @@ Niech $x \in \R$.
   
 \end{frame}
 
+\section{Symulacje komputerowe dla innych ciągów}
+
 \subimport{\tmpDataFolder}{\powSubstrPlotsTex}
+
+\subsection{\texorpdfstring{$n! = 1\cdot2\cdot \ldots \cdot n, \quad \paren{n \in \N}$}{Silnia}}
 
 \subimport{\tmpDataFolder}{\factorialSubstrPlotsTex}
 
