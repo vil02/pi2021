@@ -103,29 +103,6 @@ def draw_wheels(radius_a, radius_b, angle_a, max_spoke_num):
         cur_ax.add_collection(_)
 
 
-# def draw_radius_arrow(x_end_a, x_end_b, y_pos, in_str):
-#     """draws an around indicating the wheel radius"""
-#     arrow_params = dict(
-#         width=0.02,
-#         head_width=0.2,
-#         head_length=0.3,
-#         length_includes_head=True,
-#         overhang=0.3,
-#         linewidth=0,
-#         color=[0, 0, 0])
-#     x_middle = (x_end_a+x_end_b)/2
-#     matplotlib.pyplot.arrow(
-#         x_middle, y_pos,
-#         x_end_a-x_middle, 0,
-#         **arrow_params)
-#     matplotlib.pyplot.arrow(
-#         x_middle, y_pos,
-#         x_end_b-x_middle, 0,
-#         **arrow_params)
-#     matplotlib.pyplot.text(
-#         x_middle, y_pos+0.2, in_str, horizontalalignment='center')
-
-
 def draw_vertical_radius_arrow(x_pos, y_end_a, y_end_b, in_str, x_label_shift):
     """draws an around indicating the wheel radius"""
     arrow_params = get_arrow_basic_params()
