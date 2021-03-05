@@ -137,8 +137,7 @@ def to_approx_latex_str(in_val, decimal_places=5):
     """
     returns the latex string representation of the input
     """
-    res = f'{{:.{decimal_places}f}}'.format(in_val)
-    res.replace('.', ',')
+    res = f'{{:.{decimal_places}f}}'.format(in_val).replace('.', '{,}')
     return res+r'\ldots{}'
 
 
