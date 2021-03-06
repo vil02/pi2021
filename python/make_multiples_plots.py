@@ -53,7 +53,7 @@ def create_single_plot(**kwargs):
         plot_tick(
             fractional_part(_*kwargs['in_value']), short_tick_size,
             color=main_color,
-            linewidth=0.001)
+            linewidth=0.5)
     for _ in [0, 1]:
         plot_tick(_, short_tick_size, color=main_color)
         place_label(_, -short_tick_size-label_gap, str(_))
