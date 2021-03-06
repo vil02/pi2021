@@ -255,17 +255,19 @@ Niech $x \in \R$.
 \section{Uwagi końcowe}
 \begin{frame}
   \begin{theorem}
-    Jeżeli ${\fracpart{\log a_k}}_{k \in \N}$ jest gęsty w przedziale  $[0, 1]$, to
+    Jeżeli ${\fracpart{\log_{10} a_k}}_{k \in \N}$ jest gęsty w przedziale  $[0, 1]$, to
     ciąg ${\paren{a_k}}_{k \in \N}$ \define{zawiera} wszystkie liczby.
   \end{theorem}
+  \uncover<2->{
   \begin{example}
   \begin{enumerate}[label=\enumsymbol]
-    \item ${\fracpart{n^k\log_{10}2}}_{n \in \N} \rightsquigarrow \paren{2^{n^k}}_{n \in \N}$, dla dowolnego $k \in \N$ (zob.~\cite{Weyl1916}),
-    \item ${\fracpart{p_n\log_{10}2}}_{n \in \N} \rightsquigarrow \paren{2^{p_n}}_{n \in \N}$, gdzie $p_n$ oznacza $n$-tą liczbę pierwszą (zob.~\cite{Vinogradov1948}),
-    \item $\paren{n^k}_{n \in \N}$, dla dowolnego $k \in \N$,
-    \item $\paren{n!}_{n \in \N}$ (zob.~\cite{Diaconis1977}),
+    \item<2-> $\paren{\fracpart{n\log_{10}2}}_{n \in \N} \rightsquigarrow \paren{2^n}_{n \in \N}$,
+    \item<3-> $\paren{\fracpart{n^k\log_{10}2}}_{n \in \N} \rightsquigarrow \paren{2^{n^k}}_{n \in \N}$,
+    \item<4-> $\paren{\fracpart{p_n\log_{10}2}}_{n \in \N} \rightsquigarrow \paren{2^{p_n}}_{n \in \N}$, gdzie $p_n$ oznacza $n$-tą liczbę pierwszą (zob.~\cite{Vinogradov1948}),
+    \item<5-> $\paren{\fracpart{k\log_{10}n}}_{n \in \N} \rightsquigarrow \paren{n^k}_{n \in \N}$, dla dowolnego $k \in \N$,
+    \item<6-> $\paren{\fracpart{\log_{10}n!}}_{n \in \N} \rightsquigarrow\paren{n!}_{n \in \N}$ (zob.~\cite{Diaconis1977}),
   \end{enumerate}
-  \end{example}
+  \end{example}}
 \end{frame}
 
 \section{Bibliografia}
