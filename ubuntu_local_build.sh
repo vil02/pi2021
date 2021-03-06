@@ -8,12 +8,14 @@ done
 
 cd latex/ || return
 
-TEX_FILE="pi2021.tex"
-readonly TEX_FILE
-
-pdflatex -interaction=batchmode -draftmode $TEX_FILE
-pdflatex -interaction=batchmode -draftmode $TEX_FILE
-pdflatex -interaction=batchmode $TEX_FILE
+FILE_NAME="pi2021"
+readonly FILE_NAME
+FILE_EXT=".tex"
+readonly FILE_EXT
+pdflatex -interaction=batchmode -draftmode "$FILE_NAME$FILE_EXT"
+bibtex $FILE_NAME
+pdflatex -interaction=batchmode -draftmode "$FILE_NAME$FILE_EXT"
+pdflatex -interaction=batchmode "$FILE_NAME$FILE_EXT"
 
 cd ..
 
