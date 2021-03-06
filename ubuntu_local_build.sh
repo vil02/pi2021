@@ -6,8 +6,10 @@ done
 
 cd latex/
 
-for run_num in {1..3};
-do
-    pdflatex pi2021.tex
-done
+pdflatex -interaction=batchmode -draftmode pi2021.tex
+bibtex pi2021
+pdflatex -interaction=batchmode -draftmode pi2021.tex
+pdflatex -interaction=batchmode pi2021.tex
+
+cd ..
 
