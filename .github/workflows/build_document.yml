@@ -1,0 +1,44 @@
+name: build_document
+
+on:
+  push:
+    paths-ignore:
+      - 'generated/**'
+
+env:
+  RESULT_PATH: ./generated
+
+jobs:
+  build:
+    runs-on: 20.04
+    timeout-minutes: 60
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        persist-credentials: false
+    - name: Install dependencies
+      run: |
+        sudo apt-get install texlive-latex-extra
+        sudo apt-get install cm-super
+        sudo apt-get install texlive-lang-polish
+        sudo apt-get install texlive-fonts-extra
+    - name: run build script
+      working-directory: ${{github.workspace}}
+      shell: bash
+      run: |
+        ./ubuntu_local_build.sh
+        mkdir -p ${{env.RESULT_PATH}}
+        mv pi2021.pdf ${{env.RESULT_PATH}}
+    - name: commit result
+      working-directory: ${{github.workspace}}
+      shell: bash
+      run: |
+        git config --global user.name 'build_document_action'
+        git config --global user.email 'vil02@users.noreply.github.com'
+        git add ${{env.RESULT_PATH}}
+        git commit -m "Automated document generation"
+    - name: push result
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{secrets.PUSH_TOKEN}}
