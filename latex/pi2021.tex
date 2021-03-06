@@ -114,7 +114,7 @@
 \end{frame}
 \subsection{Potęgi dwójki}
 \begin{frame}
-  Rozważmy ciąg ${(2^n)}_{n \in \N}$, tzn.\ liczby 2, 4, 8, 16, 32, 64, 128, 256, 512, \ldots{}.
+  Rozważmy ciąg ${(2^n)}_{n \in \N}$, tzn.\ liczby 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, \ldots{}.
   Zauważmy, że
   \begin{enumerate}[label=\enumsymbol]
     \item \colora{28} zawiera się w $2^7 = 1\colora{28}$,
@@ -144,7 +144,7 @@
     Wówczas dla dowolnej liczby $n \in \N$ istnieje taki wykładnik $w \in \N$, że liczba $p^w$ \define{rozpoczyna} się liczbą $n$. 
   \end{lemma}
   \begin{lemma}
-    \label{lemma::log_10_irrational_iff}
+    \label{lemma::log_10_rational_iff}
     $\log_{10}p \in \Q$ wtedy i tylko wtedy, gdy $p = 10^r$, dla pewnego $r \in \N_0$.
   \end{lemma}
 \end{frame}
@@ -175,19 +175,20 @@
 Niech $x \in \R$.
 \define{Częścią całkowitą liczby} $x$ nazywamy największą liczbę całkowitą nie większą niż $x$ i oznaczamy symbolem $\floor{x}$.
 
-\define{Część ułamkową liczby} $x$ definiujemy wzorem
+\uncover<3->{\define{Część ułamkową liczby} $x$ definiujemy wzorem
 \begin{equation}
 \label{eq::frac_part_definition}
-\fracpart{x} = x-\floor{x} \in \left[0, 1\right).
-\end{equation}
+\fracpart{x} = x-\floor{x} \uncover<4->{ \in \left[0, 1\right).}
+\end{equation}}
 \end{definition}
+\uncover<2->{
 \begin{example}
   \begin{enumerate}[label=\enumsymbol]
-    \item $\floor{\pi} = 3$, $\fracpart{\pi} = 0{,}14159265\ldots{}$,
-    \item $\floor{15} = 15$, $\fracpart{15} = 0$,
-    \item $\floor{-4{,}25} = -5$, $\fracpart{-4{,}25} = 0{,}75$, 
+    \item<2-> $\floor{\pi} = 3$, \uncover<5->{$\fracpart{\pi} = 0{,}14159265\ldots{}$,}
+    \item<2-> $\floor{15} = 15$, \uncover<5->{$\fracpart{15} = 0$,}
+    \item<6-> $\floor{-4{,}25} = -5$, $\fracpart{-4{,}25} = 0{,}75$. 
   \end{enumerate}
-\end{example}
+\end{example}}
 \end{frame}
 
 \subimport{\tmpDataFolder}{\fracPartsOfRationalMultiplesTex}
@@ -199,6 +200,7 @@ Niech $x \in \R$.
       \subimport{\tmpDataFolder}{\fracPartsOfIrrationalMultiplesTex}
     \end{figure}
   \end{example}
+
   \begin{theorem}[\cite{Sierpinski1910, Weyl1916}]
     \label{thm::fractional_part_of_multiples_of_irrational_numers_are_dense}
     Jeżeli $\gamma \in \R \setminus \Q$, to ciąg $\paren{\fracpart{n\gamma}}_{n \in \N}$ jest \define{gęsty} w przedziale $[0, 1]$,
@@ -213,23 +215,23 @@ Niech $x \in \R$.
     10^w = s \iff \log_{10}s = w,
   \end{equation*}
   \begin{enumerate}[label=\enumsymbol]
-    \item $\log_{10}100 = 2$, bo $10^2 = 100$,
-    \item $\log_{10}10^\alpha = \alpha \quad \paren{\alpha \in \R}$,
-    \item $\log_{10}2 = 0{,}30102\ldots{}, \log_{10}3 = 0{,}47712\ldots{}, \log_{10}4 = 0{,}60205\ldots{}  \stackrel{\text{Lemat~\ref{lemma::log_10_irrational_iff}}}{\in} \R \setminus \Q$,
-    \item $10^{\log_{10}\alpha} = \alpha \quad \paren{\alpha \in \R}$,
+    \item<2-> $\log_{10}100 = 2$, bo $10^2 = 100$,
+    \item<3-> $\log_{10}10^\alpha = \alpha \quad \paren{\alpha \in \R}$,
+    \item<4-> $\log_{10}2 = 0{,}30102\ldots{}, \log_{10}3 = 0{,}47712\ldots{}, \log_{10}4 = 0{,}60205\ldots{} \uncover<5->{\stackrel{\text{Lemat~\ref{lemma::log_10_rational_iff}}}{\in} \R \setminus \Q$,
+    \item<6-> $10^{\log_{10}\alpha} = \alpha \quad \paren{\alpha \in \R}$,}
   \end{enumerate}
-  \begin{equation} \label{eq::log_is_inverse_to_exp}
+  \uncover<7->{\begin{equation} \label{eq::log_is_inverse_to_exp}
     10^{\log_{10}p^w} = p^w \quad \paren{p, w \in \N},
-  \end{equation}
-  \begin{equation} \label{eq::exp_of_sum}
+  \end{equation}}
+  \uncover<8->{\begin{equation} \label{eq::exp_of_sum}
      10^{w_1+w_2} = 10^{w_1} \cdot 10^{w_2} \quad \paren{w_1, w_2 \in \R},
-  \end{equation}
+  \end{equation}}
   \begin{enumerate}[label=\enumsymbol]
-    \item $\log_{10} x_1 x_2 = \log_{10}x_1+\log_{10}x_2 \quad \paren{x_1, x_2 > 0}$,
+    \item<9-> $\log_{10} x_1 x_2 = \log_{10}x_1+\log_{10}x_2 \quad \paren{x_1, x_2 > 0}$,
   \end{enumerate}
-  \begin{equation} \label{eq::log_of_pow}
+  \uncover<10->{\begin{equation} \label{eq::log_of_pow}
     \log_{10}{p^w} = w \log_{10}p  \quad \paren{p, w \in \N}.
-  \end{equation}
+  \end{equation}}
 \end{frame}
 
 \section{\texorpdfstring{Dowód lematu~\protect\ref{lemma::powers_begin_with_every_string}}{Dowód głównego lematu}}
@@ -237,7 +239,7 @@ Niech $x \in \R$.
 \begin{frame}
   \begin{proof}[Dowód lematu~\ref{lemma::powers_begin_with_every_string}]
     \begin{align*}
-      p^w &\stackrel{\eqref{eq::log_is_inverse_to_exp}}{=} 10^{\log_{10}p^w} \stackrel{\eqref{eq::log_of_pow}}{=} 10^{w \log_{10} p} \stackrel{\eqref{eq::frac_part_definition}}{=} 10^{\floor{w \log_{10} p} + \fracpart{w \log_{10} p}} \\
+      p^w & \stackrel{\eqref{eq::log_is_inverse_to_exp}}{=} 10^{\log_{10}p^w} \stackrel{\eqref{eq::log_of_pow}}{=} 10^{w \log_{10} p} \stackrel{\eqref{eq::frac_part_definition}}{=} 10^{\floor{w \log_{10} p} + \fracpart{w \log_{10} p}} \\
           &\stackrel{\eqref{eq::exp_of_sum}}{=} \underbrace{10^{\floor{w \log_{10} p}}}_{10\ldots 0}\cdot10^{\fracpart{w \log_{10} p}}.
     \end{align*}
     \begin{enumerate}[label=\enumsymbol]
@@ -279,5 +281,19 @@ Niech $x \in \R$.
 \subsection{\texorpdfstring{$n! = 1\cdot2\cdot \ldots \cdot n, \quad \paren{n \in \N}$, $0! = 1$}{Silnia}} % chktex 11
 
 \subimport{\tmpDataFolder}{\factorialSubstrPlotsTex}
+
+
+\section{\texorpdfstring{Dowód lematu~\protect\ref{lemma::log_10_rational_iff}}{Dowód warunku równoważnego wymierności logarytmu dziesiętnego}}
+
+\begin{frame}
+  \begin{proof}[Dowód lematu~\ref{lemma::log_10_rational_iff}]
+    Załóżmy, że $\log_{10}p = \frac{a}{b}$, dla pewnych $a, b \in \N$.
+    Wówczas $10^{\frac{a}{b}} = p$, stąd $10^a = p^b$, i ponadto $2^a5^a = p^b$.
+    Zatem $p = 2^r5^s$, dla pewnych $r, s \in \N$.
+    Pozostaje pokazać, że $r = s$.
+    Istotnie, $2^{rb}5^{sb} = 2^a5^a$, skąd $a = rb = sb$, więc $r=s$.
+    A zatem $p = 2^r5^r = 10^r$.
+  \end{proof}
+\end{frame}
 
 \end{document}
