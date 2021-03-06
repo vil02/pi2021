@@ -8,9 +8,12 @@ done
 
 cd latex/ || return
 
-pdflatex -interaction=batchmode -draftmode pi2021.tex
-bibtex pi2021
-pdflatex -interaction=batchmode -draftmode pi2021.tex
-pdflatex -interaction=batchmode pi2021.tex
+TEX_FILE="pi2021.tex"
+readonly TEX_FILE
+
+pdflatex -interaction=batchmode -draftmode $TEX_FILE
+pdflatex -interaction=batchmode -draftmode $TEX_FILE
+pdflatex -interaction=batchmode $TEX_FILE
 
 cd ..
+
