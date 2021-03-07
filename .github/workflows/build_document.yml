@@ -27,7 +27,7 @@ jobs:
     - name: Set up Python ${{env.PYTHON_VERSION}}
       uses: actions/setup-python@v2
       with:
-        python-version: ${{end.PYTHON_VERSION}}
+        python-version: ${{env.PYTHON_VERSION}}
     - name: run build script
       working-directory: ${{github.workspace}}
       shell: bash
