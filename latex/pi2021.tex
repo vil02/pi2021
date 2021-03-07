@@ -241,15 +241,18 @@ Niech $x \in \R$.
 \begin{frame}
   \begin{proof}[Dowód lematu~\ref{lemma::powers_begin_with_every_string}]
     \begin{align*}
-      p^w & \stackrel{\eqref{eq::log_is_inverse_to_exp}}{=} 10^{\log_{10}p^w} \stackrel{\eqref{eq::log_of_pow}}{=} 10^{w \log_{10} p} \stackrel{\eqref{eq::frac_part_definition}}{=} 10^{\floor{w \log_{10} p} + \fracpart{w \log_{10} p}} \\
-          &\stackrel{\eqref{eq::exp_of_sum}}{=} \underbrace{10^{\floor{w \log_{10} p}}}_{10\ldots 0}\cdot10^{\fracpart{w \log_{10} p}}.
+      \uncover<2->{p^w} & \uncover<3->{\stackrel{\eqref{eq::log_is_inverse_to_exp}}{=} 10^{\log_{10}p^w}}
+            \uncover<4->{\stackrel{\eqref{eq::log_of_pow}}{=} 10^{w \log_{10} p}}
+            \uncover<5->{\stackrel{\eqref{eq::frac_part_definition}}{=} 10^{\floor{w \log_{10} p} + \fracpart{w \log_{10} p}}} \\
+          & \uncover<6->{\stackrel{\eqref{eq::exp_of_sum}}{=} \underbrace{10^{\floor{w \log_{10} p}}}_{10\ldots 0}\cdot10^{\fracpart{w \log_{10} p}}.}
     \end{align*}
     \begin{enumerate}[label=\enumsymbol]
-      \item $10^{\log_{10} 1{,}2345} = 1{,}2345$,
-      \item $10^{\log_{10} c_1{,}c_2c_3c_3 \ldots{} c_l} = c_1{,}c_2c_3c_3 \ldots{} c_l$.
+      \item<7-> $10^{\log_{10} 1{,}2345} = 1{,}2345$,
+      \item<8-> $10^{\log_{10} c_1{,}c_2c_3c_3 \ldots{} c_l} = c_1{,}c_2c_3c_3 \ldots{} c_l$.
     \end{enumerate}
-    Niech $n = c_1c_2c_3 \ldots{} c_l$, wobec twierdzenia~\ref{thm::fractional_part_of_multiples_of_irrational_numers_are_dense} istnieje $w > \frac{l}{\log_{10}p}$ takie, że
-    $\fracpart{w \log_{10} p}$ jest \textit{wystarczająco dobrym} przybliżeniem $\log_{10}{c_1{,}c_2c_3c_3 \ldots{} c_l}$.  
+    \uncover<9->{Niech $n = c_1c_2c_3 \ldots{} c_l$,}
+    \uncover<10->{wobec twierdzenia~\ref{thm::fractional_part_of_multiples_of_irrational_numers_are_dense} istnieje $w > \frac{l}{\log_{10}p}$ takie, że
+    $\fracpart{w \log_{10} p}$ jest \textit{wystarczająco dobrym} przybliżeniem $\log_{10}{c_1{,}c_2c_3c_3 \ldots{} c_l}$.}
   \end{proof}
   
 \end{frame}
