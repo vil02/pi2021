@@ -115,15 +115,15 @@
 \subsection{Potęgi dwójki}
 \begin{frame}
   Rozważmy ciąg ${(2^n)}_{n \in \N}$, tzn.\ liczby 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, \ldots{}.
-  Zauważmy, że
+  \uncover<2->{Zauważmy, że}
   \begin{enumerate}[label=\enumsymbol]
-    \item \colora{28} zawiera się w $2^7 = 1\colora{28}$,
-    \item \colora{314} zawiera się w $2^{74} = 188894659\colora{314}78580854784$,
-    \item \colora{31415} zawiera się w $2^{144} = 2230074519853062\colora{31415}35718272648361505980416$,
-    \item 70000000 zawiera się w $2^{9452}$,
-    \item 2000000000 zawiera się w $2^{100824}$.
+    \item<2-> \colora{28} zawiera się w $2^7 = 1\colora{28}$,
+    \item<3-> \colora{314} zawiera się w $2^{74} = 188894659\colora{314}78580854784$,
+    \item<4-> \colora{31415} zawiera się w $2^{144} = 2230074519853062\colora{31415}35718272648361505980416$,
+    \item<5-> 70000000 zawiera się w $2^{9452}$,
+    \item<6-> 2000000000 zawiera się w $2^{100824}$.
   \end{enumerate}
-  Czy prawdą jest, że dla dowolnej liczby $n \in \N$ istnieje taki wykładnik $w \in \N$, że liczba $2^w$ zawiera liczbę $n$?
+  \uncover<7->{Czy prawdą jest, że dla dowolnej liczby $n \in \N$ istnieje taki wykładnik $w \in \N$, że liczba $2^w$ zawiera liczbę $n$?}
 \end{frame}
 
 \section{Symulacje komputerowe}
@@ -134,16 +134,16 @@
 \section{Główne twierdzenie}
 
 \begin{frame}
-  \pause \begin{theorem}
+  \pause{} \begin{theorem}
     Niech $p \in \N$ będzie takie, że $p \not = 10^r$, $r \in \N$.
     Wówczas dla dowolnej liczby $n \in \N$ istnieje taki wykładnik $w \in \N$, że liczba $p^w$ zawiera liczbę $n$.
   \end{theorem}
-  \pause \begin{lemma}
+  \pause{} \begin{lemma}
     \label{lemma::powers_begin_with_every_string}
     Niech $p \in \N$ będzie takie, że $\log_{10}p \in \R \setminus \Q$.
     Wówczas dla dowolnej liczby $n \in \N$ istnieje taki wykładnik $w \in \N$, że liczba $p^w$ \define{rozpoczyna} się liczbą $n$. 
   \end{lemma}
-  \pause \begin{lemma}
+  \pause{} \begin{lemma}
     \label{lemma::log_10_rational_iff}
     $\log_{10}p \in \Q$ wtedy i tylko wtedy, gdy $p = 10^r$, dla pewnego $r \in \N_0$.
   \end{lemma}
