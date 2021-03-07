@@ -7,6 +7,7 @@ on:
 
 env:
   RESULT_PATH: ./generated
+  PYTHON_VERSION: 3.8
 
 jobs:
   build:
@@ -23,6 +24,10 @@ jobs:
         sudo apt-get install cm-super
         sudo apt-get install texlive-lang-polish
         sudo apt-get install texlive-fonts-extra
+    - name: Set up Python ${{end.PYTHON_VERSION}}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{end.PYTHON_VERSION}}
     - name: run build script
       working-directory: ${{github.workspace}}
       shell: bash
