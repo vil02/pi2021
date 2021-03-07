@@ -43,16 +43,8 @@ class TestPowStrData(unittest.TestCase):
     def _basic_check_with_target(
             self, ssd_obj, in_value, in_target_result, in_seq_fun):
         cur_res = ssd_obj.find_val(in_value)
-
-        # https://oeis.org/A030000/b030000.txt
-        # has an error at the position 9634
-        make_skip = False
-        if in_value == 9634 and in_target_result == 0 and cur_res == 809 \
-                and in_seq_fun(cur_res) == 2**809:
-            make_skip = True
-        if not make_skip:
-            self.assertEqual(cur_res, in_target_result)
-            self._basic_check(ssd_obj, in_value, in_seq_fun)
+        self.assertEqual(cur_res, in_target_result)
+        self._basic_check(ssd_obj, in_value, in_seq_fun)
 
     def _check_general_seq_str_data_result_dict(
             self, in_result_dict, ssd_obj, in_seq_fun):
