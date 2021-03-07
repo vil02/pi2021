@@ -39,7 +39,7 @@ jobs:
       run: |
         ./ubuntu_local_build.sh
         mkdir -p ${{env.RESULT_PATH}}
-        mv pi2021.pdf ${{env.RESULT_PATH}}
+        mv ./latex/pi2021.pdf ${{env.RESULT_PATH}}
     - name: commit result
       working-directory: ${{github.workspace}}
       shell: bash
