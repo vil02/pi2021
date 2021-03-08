@@ -25,18 +25,6 @@ matplotlib.rcParams['text.latex.preamble'] = \
     r'{\box0\lower0.4pt\box2}}'+'\n' \
     r'\def\sqrt{\mathpalette\DHLhksqrt}'
 
-
-def get_arrow_basic_params():
-    """arrows parameters used in this script"""
-    return dict(
-        width=0.02,
-        head_width=0.2,
-        head_length=0.3,
-        length_includes_head=True,
-        overhang=0.3,
-        linewidth=0)
-
-
 def make_wheel(**kwargs):
     """draws single wheel"""
 
@@ -57,10 +45,13 @@ def make_wheel(**kwargs):
         tire_width, zorder=10)
     tire_collection = matplotlib.collections.PatchCollection(
         [tire], color=kwargs['tire_color'], linewidth=0)
-    marker = matplotlib.patches.FancyArrow(
-        kwargs['outer_radius']/2, 0,
-        kwargs['outer_radius']/2, 0,
-        **get_arrow_basic_params())
+
+    marker_angle = math.radians(20)
+    marker = matplotlib.patches.Polygon(
+        [[kwargs['outer_radius'], 0],
+         [kwargs['inner_radius'], -tire_width*math.tan(marker_angle)],
+         [kwargs['inner_radius'], tire_width*math.tan(marker_angle)]],
+        fill=True, zorder=20)
     marker_collection = matplotlib.collections.PatchCollection(
         [marker], facecolor=kwargs['marker_color'], edgecolor='none')
     return [spoke_list, tire_collection, marker_collection]
@@ -105,8 +96,14 @@ def draw_wheels(radius_a, radius_b, angle_a, max_spoke_num):
 
 def draw_vertical_radius_arrow(x_pos, y_end_a, y_end_b, in_str, x_label_shift):
     """draws an around indicating the wheel radius"""
-    arrow_params = get_arrow_basic_params()
-    arrow_params['color'] = [0, 0, 0]
+    arrow_params = dict(
+        width=0.02,
+        head_width=0.2,
+        head_length=0.3,
+        length_includes_head=True,
+        overhang=0.3,
+        linewidth=0,
+        color=[0, 0, 0])
     y_middle = (y_end_a+y_end_b)/2
     matplotlib.pyplot.arrow(
         x_pos, y_middle,
@@ -229,5 +226,5 @@ def prepare_irrational(
 
 FRAME_RATE = 20
 DISPLAYED_MAX_RAD = 1.5
-D_ANGLE = prepare_rational(DISPLAYED_MAX_RAD, 3, FRAME_RATE)
-prepare_irrational(DISPLAYED_MAX_RAD, 6, FRAME_RATE, D_ANGLE)
+D_ANGLE = prepare_rational(DISPLAYED_MAX_RAD, 300, FRAME_RATE)
+prepare_irrational(DISPLAYED_MAX_RAD, 600, FRAME_RATE, D_ANGLE)
