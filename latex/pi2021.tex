@@ -64,7 +64,7 @@
 \newcommand{\abs}[1]{\left| #1 \right|}
 \newcommand{\email}[1]{\href{mailto: #1}{\texttt{#1}}}
 \newcommand{\link}[1]{\href{#1}{\texttt{#1}}}
-\newcommand{\goToProof}[1]{\hfill\hyperlink{#1}{\normalfont \faArrowCircleRight}}
+\newcommand{\goToProof}[1]{\hfill\hyperlink{#1}{\normalfont\faArrowCircleRight}}
 \renewcommand*\footnoterule{}
 
 \setbeamertemplate{theorems}[numbered]
@@ -141,13 +141,13 @@
   \end{theorem}
   \pause{}
   \begin{lemma}
-    \label<.(2)>{lemma::powers_begin_with_every_string}
+    \label<. (2)>{lemma::powers_begin_with_every_string}
     Niech $p \in \N$ będzie takie, że $\log_{10}p \in \R \setminus \Q$.
     Wówczas dla dowolnej liczby $n \in \N$ istnieje taki wykładnik $w \in \N$, że liczba $p^w$ \define{rozpoczyna} się liczbą $n$. \goToProof{proof::lemma::powers_begin_with_every_string}
   \end{lemma}
   \pause{}
   \begin{lemma}
-    \label<.(1)>{lemma::log_10_rational_iff}
+    \label<. (1)>{lemma::log_10_rational_iff}
     $\log_{10}p \in \Q$ wtedy i tylko wtedy, gdy $p = 10^r$, dla pewnego $r \in \N_0$. 
     \goToProof{proof::lemma::log_10_rational_iff}
   \end{lemma}
