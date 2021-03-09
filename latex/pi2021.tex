@@ -18,21 +18,19 @@
 \usepackage{hyperref}
 \usepackage{etoolbox}
 \patchcmd{\theorem}{Theorem}{Twierdzenie}{}{}
-\patchcmd{\corollary}{Corollary}{Wniosek}{}{}
+%\patchcmd{\corollary}{Corollary}{Wniosek}{}{}
 \patchcmd{\lemma}{Lemma}{Lemat}{}{}
-\patchcmd{\proposition}{Proposition}{Stwierdzenie}{}{}
-\patchcmd{\axiom}{Axiom}{Aksjomat}{}{}
+%\patchcmd{\proposition}{Proposition}{Stwierdzenie}{}{}
+%\patchcmd{\axiom}{Axiom}{Aksjomat}{}{}
 \patchcmd{\example}{Example}{Przykład}{}{}
 \patchcmd{\definition}{Definition}{Definicja}{}{}
-\patchcmd{\remark}{Remark}{Uwaga}{}{}
+%\patchcmd{\remark}{Remark}{Uwaga}{}{}
 
 \newcommand{\enumsymbol}{$\triangleright$}
 \newcommand{\enumsymbolsec}{$\circ$}
 
 
 \newcommand{\colora}[1]{{\color{red}{#1}}}
-\newcommand{\colorb}[1]{{\color{green}{#1}}}
-\newcommand{\colorc}[1]{{\color{blue}{#1}}}
 
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Q}{\mathbb{Q}}
@@ -44,6 +42,12 @@
 \newcommand{\convto}[2]{\xrightarrow[#2]{#1}}
 \newcommand{\TODO}[1]{(\footnote{\texttt{TODO:} #1}!)}
 
+\newcommand{\myEmail}{vil02@o2.pl}
+\newcommand{\myLinkedinLink}{https://www.linkedin.com/in/piotr-idzik-34b572151/}
+\newcommand{\myGithubLink}{https://github.com/vil02/}
+
+\newcommand{\myLinkedin}{\href{\myLinkedinLink}{\faLinkedinSquare}}
+\newcommand{\myGithub}{\href{\myGithubLink}{\faGithubSquare}}
 
 \let\oldsqrt\sqrt{}
 \def\sqrt{\mathpalette\DHLhksqrt}
@@ -59,8 +63,8 @@
 \newcommand{\fracpart}[1]{\left\{ #1 \right\}}
 \newcommand{\abs}[1]{\left| #1 \right|}
 \newcommand{\email}[1]{\href{mailto: #1}{\texttt{#1}}}
-
-
+\newcommand{\link}[1]{\href{#1}{\texttt{#1}}}
+\newcommand{\goToProof}[1]{\hfill\hyperlink{#1}{\normalfont \faArrowCircleRight}}
 \renewcommand*\footnoterule{}
 
 \setbeamertemplate{theorems}[numbered]
@@ -69,12 +73,10 @@
 
 \usetheme{Montpellier}
 
-\author{\texorpdfstring{\href{https://www.linkedin.com/in/piotr-idzik-34b572151/}{Piotr Idzik} \\ \email{vil02@o2.pl}}{Piotr Idzik}}
+\author{\texorpdfstring{\href{\myLinkedinLink}{Piotr Idzik} \\ \email{\myEmail}}{Piotr Idzik}}
 \title{Co można znaleźć w potęgach dwójki?}
 \date{Karlsruhe, Katowice, 15.03.2021}
 \setbeamerfont{page number in head/foot}{size=\large, shape=\ttfamily\color{black}}
-%\setbeamertemplate{footline}[frame number]
-%\beamertemplatenavigationsymbolsempty
 
 \setbeamertemplate{navigation symbols}
 {%
@@ -86,14 +88,12 @@
   \insertshorttitle\hfill%
   \texttt{\insertframenumber}}
 
-
-%\setbeamercolor{background canvas}{bg=violet!20}
 \begin{document}
 \begin{frame}[plain]
 \maketitle
 
-\href{https://www.linkedin.com/in/piotr-idzik-34b572151/}{\faLinkedinSquare}
-\href{https://github.com/vil02}{\faGithubSquare}
+\myLinkedin{}
+\myGithub{}
 \hfill \textcolor[rgb]{0.85,0.85,0.85}{\texttt{\tiny{ver. \today\ \currenttime\/}}}
 \end{frame}
 \section{Sformułowanie problemu}
@@ -104,26 +104,26 @@
     Mówimy, że liczba $a$ \define{zawiera} liczbę $b$,
     jeżeli reprezentacja dziesiętna liczby $b$ jest podłańcuchem reprezentacji dziesiętnej liczby $a$.
   \end{definition}
-
+ \pause{}
   \begin{example}
     \begin{enumerate}[label=\enumsymbol]
-      \item liczba 128 zawiera liczby 12 oraz 28,
-      \item liczba 128 nie zawiera liczby 18.
+      \item<+-> liczba 128 zawiera liczby 12 oraz 28,
+      \item<+-> liczba 128 nie zawiera liczby 18.
     \end{enumerate}
   \end{example}
 \end{frame}
 \subsection{Potęgi dwójki}
 \begin{frame}
   Rozważmy ciąg ${(2^n)}_{n \in \N}$, tzn.\ liczby 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, \ldots{}.
-  \uncover<2->{Zauważmy, że}
+  \pause{}
   \begin{enumerate}[label=\enumsymbol]
-    \item<2-> \colora{28} zawiera się w $2^7 = 1\colora{28}$,
-    \item<3-> \colora{314} zawiera się w $2^{74} = 188894659\colora{314}78580854784$,
-    \item<4-> \colora{31415} zawiera się w $2^{144} = 2230074519853062\colora{31415}35718272648361505980416$,
-    \item<5-> 70000000 zawiera się w $2^{9452}$,
-    \item<6-> 2000000000 zawiera się w $2^{100824}$.
+    \item<+-> \colora{28} zawiera się w $2^7 = 1\colora{28}$,
+    \item<+-> \colora{314} zawiera się w $2^{74} = 188894659\colora{314}78580854784$,
+    \item<+-> \colora{31415} zawiera się w $2^{144} = 2230074519853062\colora{31415}35718272648361505980416$,
+    \item<+-> 70000000 zawiera się w $2^{9452}$,
+    \item<+-> 2000000000 zawiera się w $2^{100824}$.
   \end{enumerate}
-  \uncover<7->{Czy prawdą jest, że dla dowolnej liczby $n \in \N$ istnieje taki wykładnik $w \in \N$, że liczba $2^w$ zawiera liczbę $n$?}
+  \uncover<+->{Czy prawdą jest, że dla dowolnej liczby $n \in \N$ istnieje taki wykładnik $w \in \N$, że liczba $2^w$ zawiera liczbę $n$?}
 \end{frame}
 
 \section{Symulacje komputerowe}
@@ -134,18 +134,22 @@
 \section{Główne twierdzenie}
 
 \begin{frame}
-  \pause{} \begin{theorem}
+  \pause{}
+  \begin{theorem}
     Niech $p \in \N$ będzie takie, że $p \not = 10^r$, $r \in \N$.
     Wówczas dla dowolnej liczby $n \in \N$ istnieje taki wykładnik $w \in \N$, że liczba $p^w$ zawiera liczbę $n$.
   \end{theorem}
-  \pause{} \begin{lemma}
-    \label{lemma::powers_begin_with_every_string}
+  \pause{}
+  \begin{lemma}
+    \label<.(2)>{lemma::powers_begin_with_every_string}
     Niech $p \in \N$ będzie takie, że $\log_{10}p \in \R \setminus \Q$.
-    Wówczas dla dowolnej liczby $n \in \N$ istnieje taki wykładnik $w \in \N$, że liczba $p^w$ \define{rozpoczyna} się liczbą $n$. 
+    Wówczas dla dowolnej liczby $n \in \N$ istnieje taki wykładnik $w \in \N$, że liczba $p^w$ \define{rozpoczyna} się liczbą $n$. \goToProof{proof::lemma::powers_begin_with_every_string}
   \end{lemma}
-  \pause{} \begin{lemma}
-    \label{lemma::log_10_rational_iff}
-    $\log_{10}p \in \Q$ wtedy i tylko wtedy, gdy $p = 10^r$, dla pewnego $r \in \N_0$.
+  \pause{}
+  \begin{lemma}
+    \label<.(1)>{lemma::log_10_rational_iff}
+    $\log_{10}p \in \Q$ wtedy i tylko wtedy, gdy $p = 10^r$, dla pewnego $r \in \N_0$. 
+    \goToProof{proof::lemma::log_10_rational_iff}
   \end{lemma}
 \end{frame}
 
@@ -216,22 +220,23 @@ Niech $x \in \R$.
   \begin{equation*}
     10^w = s \iff \log_{10}s = w,
   \end{equation*}
+  \pause{}
   \begin{enumerate}[label=\enumsymbol]
-    \item<2-> $\log_{10}100 = 2$, bo $10^2 = 100$,
-    \item<3-> $\log_{10}10^\alpha = \alpha \quad \paren{\alpha \in \R}$,
-    \item<4-> $\log_{10}2 = 0{,}30102\ldots{}, \log_{10}3 = 0{,}47712\ldots{}, \log_{10}4 = 0{,}60205\ldots{} \uncover<5->{\stackrel{\text{Lemat~\ref{lemma::log_10_rational_iff}}}{\in} \R \setminus \Q$,
-    \item<6-> $10^{\log_{10}\alpha} = \alpha \quad \paren{\alpha \in \R}$,}
+    \item<+-> $\log_{10}100 = 2$, bo $10^2 = 100$,
+    \item<+-> $\log_{10}10^\alpha = \alpha \quad \paren{\alpha \in \R}$,
+    \item<+-> $\log_{10}2 = 0{,}30102\ldots{}, \log_{10}3 = 0{,}47712\ldots{}, \log_{10}4 = 0{,}60205\ldots{} \uncover<+->{\stackrel{\text{Lemat~\ref{lemma::log_10_rational_iff}}}{\in} \R \setminus \Q$,
+    \item<+-> $10^{\log_{10}\alpha} = \alpha \quad \paren{\alpha \in \R}$,}
   \end{enumerate}
-  \uncover<7->{\begin{equation} \label{eq::log_is_inverse_to_exp}
+  \uncover<+->{\begin{equation} \label{eq::log_is_inverse_to_exp}
     10^{\log_{10}p^w} = p^w \quad \paren{p, w \in \N},
   \end{equation}}
-  \uncover<8->{\begin{equation} \label{eq::exp_of_sum}
+  \uncover<+->{\begin{equation} \label{eq::exp_of_sum}
      10^{w_1+w_2} = 10^{w_1} \cdot 10^{w_2} \quad \paren{w_1, w_2 \in \R},
   \end{equation}}
   \begin{enumerate}[label=\enumsymbol]
-    \item<9-> $\log_{10} x_1 x_2 = \log_{10}x_1+\log_{10}x_2 \quad \paren{x_1, x_2 > 0}$,
+    \item<+-> $\log_{10} x_1 x_2 = \log_{10}x_1+\log_{10}x_2 \quad \paren{x_1, x_2 > 0}$,
   \end{enumerate}
-  \uncover<10->{\begin{equation} \label{eq::log_of_pow}
+  \uncover<+->{\begin{equation} \label{eq::log_of_pow}
     \log_{10}{p^w} = w \log_{10}p  \quad \paren{p, w \in \N}.
   \end{equation}}
 \end{frame}
@@ -240,19 +245,21 @@ Niech $x \in \R$.
 
 \begin{frame}
   \begin{proof}[Dowód lematu~\ref{lemma::powers_begin_with_every_string}]
+    \hypertarget{proof::lemma::powers_begin_with_every_string}{}
+    \pause{}    
     \begin{align*}
-      \uncover<2->{p^w} & \uncover<3->{\stackrel{\eqref{eq::log_is_inverse_to_exp}}{=} 10^{\log_{10}p^w}}
-            \uncover<4->{\stackrel{\eqref{eq::log_of_pow}}{=} 10^{w \log_{10} p}}
-            \uncover<5->{\stackrel{\eqref{eq::frac_part_definition}}{=} 10^{\floor{w \log_{10} p} + \fracpart{w \log_{10} p}}} \\
-          & \uncover<6->{\stackrel{\eqref{eq::exp_of_sum}}{=} \underbrace{10^{\floor{w \log_{10} p}}}_{10\ldots 0}\cdot10^{\fracpart{w \log_{10} p}}.}
+      \uncover<+->{p^w} & \uncover<+->{\stackrel{\eqref{eq::log_is_inverse_to_exp}}{=} 10^{\log_{10}p^w}}
+            \uncover<+->{\stackrel{\eqref{eq::log_of_pow}}{=} 10^{w \log_{10} p}}
+            \uncover<+->{\stackrel{\eqref{eq::frac_part_definition}}{=} 10^{\floor{w \log_{10} p} + \fracpart{w \log_{10} p}}} \\
+          & \uncover<+->{\stackrel{\eqref{eq::exp_of_sum}}{=} \underbrace{10^{\floor{w \log_{10} p}}}_{10\ldots 0}\cdot10^{\fracpart{w \log_{10} p}}.}
     \end{align*}
     \begin{enumerate}[label=\enumsymbol]
-      \item<7-> $10^{\log_{10} 1{,}2345} = 1{,}2345$,
-      \item<8-> $10^{\log_{10} c_1{,}c_2c_3c_3 \ldots{} c_l} = c_1{,}c_2c_3c_3 \ldots{} c_l$.
+      \item<+-> $10^{\log_{10} 1{,}2345} = 1{,}2345$,
+      \item<+-> $10^{\log_{10} c_1{,}c_2c_3c_3 \ldots{} c_l} = c_1{,}c_2c_3c_3 \ldots{} c_l$.
     \end{enumerate}
-    \uncover<9->{Niech $n = c_1c_2c_3 \ldots{} c_l$,}
-    \uncover<10->{wobec twierdzenia~\ref{thm::fractional_part_of_multiples_of_irrational_numers_are_dense} istnieje $w > \frac{l}{\log_{10}p}$ takie, że
-    $\fracpart{w \log_{10} p}$ jest \textit{wystarczająco dobrym} przybliżeniem $\log_{10}{c_1{,}c_2c_3c_3 \ldots{} c_l}$.}
+    \onslide<+-> Niech $n = c_1c_2c_3 \ldots{} c_l$,
+    \onslide<+-> wobec twierdzenia~\ref{thm::fractional_part_of_multiples_of_irrational_numers_are_dense} istnieje $w > \frac{l}{\log_{10}p}$ takie, że
+    $\fracpart{w \log_{10} p}$ jest \textit{wystarczająco dobrym} przybliżeniem $\log_{10}{c_1{,}c_2c_3c_3 \ldots{} c_l}$.
   \end{proof}
   
 \end{frame}
@@ -260,27 +267,24 @@ Niech $x \in \R$.
 \section{Uwagi końcowe}
 \begin{frame}
   \begin{theorem}
-    Jeżeli ${\fracpart{\log_{10} a_k}}_{k \in \N}$ jest gęsty w przedziale  $[0, 1]$, to
+    Jeżeli $\paren{{\fracpart{\log_{10} a_k}}}_{k \in \N}$ jest gęsty w przedziale  $[0, 1]$, to
     ciąg ${\paren{a_k}}_{k \in \N}$ \define{zawiera} wszystkie liczby.
   \end{theorem}
-  \uncover<2->{
+  \pause{}
   \begin{example}
   \begin{enumerate}[label=\enumsymbol]
-    \item<2-> $\paren{\fracpart{n\log_{10}2}}_{n \in \N} \rightsquigarrow \paren{2^n}_{n \in \N}$,
-    \item<3-> $\paren{\fracpart{n^k\log_{10}2}}_{n \in \N} \rightsquigarrow \paren{2^{n^k}}_{n \in \N}$,
-    \item<4-> $\paren{\fracpart{p_n\log_{10}2}}_{n \in \N} \rightsquigarrow \paren{2^{p_n}}_{n \in \N}$, gdzie $p_n$ oznacza $n$-tą liczbę pierwszą (zob.~\cite{Vinogradov1948}),
-    \item<5-> $\paren{\fracpart{k\log_{10}n}}_{n \in \N} \rightsquigarrow \paren{n^k}_{n \in \N}$, dla dowolnego $k \in \N$,
-    \item<6-> $\paren{\fracpart{\log_{10}n!}}_{n \in \N} \rightsquigarrow\paren{n!}_{n \in \N}$ (zob.~\cite{Diaconis1977}),
+    \item<+-> $\paren{\fracpart{n\log_{10}2}}_{n \in \N} \rightsquigarrow \paren{2^n}_{n \in \N}$,
+    \item<+-> $\paren{\fracpart{n^k\log_{10}2}}_{n \in \N} \rightsquigarrow \paren{2^{n^k}}_{n \in \N}$,
+    \item<+-> $\paren{\fracpart{p_n\log_{10}2}}_{n \in \N} \rightsquigarrow \paren{2^{p_n}}_{n \in \N}$, gdzie $p_n$ oznacza $n$-tą liczbę pierwszą (zob.~\cite{Vinogradov1948}),
+    \item<+-> $\paren{\fracpart{k\log_{10}n}}_{n \in \N} \rightsquigarrow \paren{n^k}_{n \in \N}$, dla dowolnego $k \in \N$,
+    \item<+-> $\paren{\fracpart{\log_{10}n!}}_{n \in \N} \rightsquigarrow\paren{n!}_{n \in \N}$ (zob.~\cite{Diaconis1977}),
   \end{enumerate}
-  \end{example}}
+  \end{example}
+  \onslide<+-> Prezentacja: \link{\myGithubLink pi2021/}
 \end{frame}
 
-\section{Bibliografia}
+\appendix
 
-\begin{frame}
-  \bibliography{bib_data}{}
-  \bibliographystyle{plain}
-\end{frame}
 \section{Symulacje komputerowe dla innych ciągów}
 
 \subimport{\tmpDataFolder}{\powSubstrPlotsTex}
@@ -294,6 +298,7 @@ Niech $x \in \R$.
 
 \begin{frame}
   \begin{proof}[Dowód lematu~\ref{lemma::log_10_rational_iff}]
+    \hypertarget{proof::lemma::log_10_rational_iff}{}
     Załóżmy, że $\log_{10}p = \frac{a}{b}$, dla pewnych $a, b \in \N$.
     Wówczas $10^{\frac{a}{b}} = p$, stąd $10^a = p^b$, i ponadto $2^a5^a = p^b$.
     Zatem $p = 2^r5^s$, dla pewnych $r, s \in \N$.
@@ -301,6 +306,12 @@ Niech $x \in \R$.
     Istotnie, $2^{rb}5^{sb} = 2^a5^a$, skąd $a = rb = sb$, więc $r=s$.
     A zatem $p = 2^r5^r = 10^r$.
   \end{proof}
+\end{frame}
+
+\section{Bibliografia}
+\begin{frame}
+  \bibliography{bib_data}{}
+  \bibliographystyle{plain}
 \end{frame}
 
 \end{document}
