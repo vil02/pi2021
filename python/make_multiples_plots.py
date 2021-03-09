@@ -148,11 +148,11 @@ def generate_irrational_data():
     core_value = math.pi
     value_set = set()
     value_str_set = set()
-    frame_num_limit = 30
+    frame_num_limit = 40
     output_file_name = \
         cf.get_config_parameter('fracPartsOfIrrationalMultiplesTex')
     core_name = cf.to_core_name(output_file_name)
-    frame_rate = 1
+    frame_rate = 3
     output_folder = cf.get_config_parameter('tmpDataFolder')
     for _ in range(0, frame_num_limit):
         cur_val = fractional_part(_*core_value)

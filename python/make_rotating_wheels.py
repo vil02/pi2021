@@ -226,5 +226,5 @@ def prepare_irrational(
 
 FRAME_RATE = 20
 DISPLAYED_MAX_RAD = 1.5
-D_ANGLE = prepare_rational(DISPLAYED_MAX_RAD, 300, FRAME_RATE)
-prepare_irrational(DISPLAYED_MAX_RAD, 600, FRAME_RATE, D_ANGLE)
+D_ANGLE = prepare_rational(DISPLAYED_MAX_RAD, 3, FRAME_RATE)
+prepare_irrational(DISPLAYED_MAX_RAD, 6, FRAME_RATE, D_ANGLE)
