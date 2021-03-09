@@ -188,7 +188,7 @@ Niech $x \in \R$.
 \uncover<2->{
 \begin{example}
   \begin{enumerate}[label=\enumsymbol]
-    \item<2-> $\floor{\pi} = 3$, \uncover<5->{$\fracpart{\pi} = 0{,}14159265\ldots{}$,}
+    \item<2-> $\floor{\pi} = 3$, \uncover<5->{$\fracpart{\pi} = 0{,}14159265\ldots$,}
     \item<2-> $\floor{15} = 15$, \uncover<5->{$\fracpart{15} = 0$,}
     \item<6-> $\floor{-4{,}25} = -5$, $\fracpart{-4{,}25} = 0{,}75$. 
   \end{enumerate}
@@ -224,7 +224,7 @@ Niech $x \in \R$.
   \begin{enumerate}[label=\enumsymbol]
     \item<+-> $\log_{10}100 = 2$, bo $10^2 = 100$,
     \item<+-> $\log_{10}10^\alpha = \alpha \quad \paren{\alpha \in \R}$,
-    \item<+-> $\log_{10}2 = 0{,}30102\ldots{}, \log_{10}3 = 0{,}47712\ldots{}, \log_{10}4 = 0{,}60205\ldots{} \uncover<+->{\stackrel{\text{Lemat~\ref{lemma::log_10_rational_iff}}}{\in} \R \setminus \Q$,
+    \item<+-> $\log_{10}2 = 0{,}30102\ldots, \log_{10}3 = 0{,}47712\ldots, \log_{10}4 = 0{,}60205\ldots \uncover<+->{\stackrel{\text{Lemat~\ref{lemma::log_10_rational_iff}}}{\in} \R \setminus \Q$,
     \item<+-> $10^{\log_{10}\alpha} = \alpha \quad \paren{\alpha \in \R}$,}
   \end{enumerate}
   \uncover<+->{\begin{equation} \label{eq::log_is_inverse_to_exp}
@@ -246,7 +246,7 @@ Niech $x \in \R$.
 \begin{frame}
   \begin{proof}[Dowód lematu~\ref{lemma::powers_begin_with_every_string}]
     \hypertarget{proof::lemma::powers_begin_with_every_string}{}
-    \pause{}    
+    \pause{}
     \begin{align*}
       \uncover<+->{p^w} & \uncover<+->{\stackrel{\eqref{eq::log_is_inverse_to_exp}}{=} 10^{\log_{10}p^w}}
             \uncover<+->{\stackrel{\eqref{eq::log_of_pow}}{=} 10^{w \log_{10} p}}
@@ -255,11 +255,11 @@ Niech $x \in \R$.
     \end{align*}
     \begin{enumerate}[label=\enumsymbol]
       \item<+-> $10^{\log_{10} 1{,}2345} = 1{,}2345$,
-      \item<+-> $10^{\log_{10} c_1{,}c_2c_3c_3 \ldots{} c_l} = c_1{,}c_2c_3c_3 \ldots{} c_l$.
+      \item<+-> $10^{\log_{10} c_1{,}c_2c_3c_3 \ldots c_l} = c_1{,}c_2c_3c_3 \ldots c_l$.
     \end{enumerate}
-    \onslide<+-> Niech $n = c_1c_2c_3 \ldots{} c_l$,
+    \onslide<+-> Niech $n = c_1c_2c_3 \ldots c_l$,
     \onslide<+-> wobec twierdzenia~\ref{thm::fractional_part_of_multiples_of_irrational_numers_are_dense} istnieje $w > \frac{l}{\log_{10}p}$ takie, że
-    $\fracpart{w \log_{10} p}$ jest \textit{wystarczająco dobrym} przybliżeniem $\log_{10}{c_1{,}c_2c_3c_3 \ldots{} c_l}$.
+    $\fracpart{w \log_{10} p}$ jest \textit{wystarczająco dobrym} przybliżeniem $\log_{10}{c_1{,}c_2c_3c_3 \ldots c_l}$.
   \end{proof}
   
 \end{frame}
