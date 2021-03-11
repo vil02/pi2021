@@ -6,15 +6,13 @@ VerbEnvir { lstlisting }
 # Ignore the contents of commands whose arguments do not produce
 # visible output or whose output is not subject to style
 
-# the thing with \label<10->:{} \label<6->:{} is ugly
 WipeArg
 {
-    \label:{} \ref:{} \vref:{} \pageref:{} \index:{} \cite:[]{}
+    \label:[]{} \ref:{} \vref:{} \pageref:{} \index:{} \cite:[]{}
     \input:{} \verbatiminput:[]{} \listinginput:[]{}{}
     \verbatimtabinput:[]{} \include:{} \includeonly:{}
     \bibitem:[]{} \texttt:{} \verb:{} \includegraphics:[]{}
     \hypertarget:{}{} \link:{}
-    \label<10->:{} \label<6->:{}
 }
 
 # Use this to ignore linter errors of a specific error code.
