@@ -25,6 +25,7 @@ matplotlib.rcParams['text.latex.preamble'] = \
     r'{\box0\lower0.4pt\box2}}'+'\n' \
     r'\def\sqrt{\mathpalette\DHLhksqrt}'
 
+
 def make_wheel(**kwargs):
     """draws single wheel"""
 
