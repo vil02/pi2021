@@ -13,6 +13,7 @@ WipeArg
     \verbatimtabinput:[]{} \include:{} \includeonly:{}
     \bibitem:[]{} \texttt:{} \verb:{} \includegraphics:[]{}
     \hypertarget:{}{} \link:{}
+    \labelOnSlide:{}{}
 }
 
 # Use this to ignore linter errors of a specific error code.
