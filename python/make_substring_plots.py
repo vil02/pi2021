@@ -143,7 +143,7 @@ def prepare_exp_substr_plots():
             lambda in_arg_str: f'{{{in_exp_base}}}^{{{in_arg_str}}}',
             'wykładnik')
     generate_substr_plots(
-        get_named_exp_str_data, range(2, 12), 'expSubstrPlotsTex')
+        get_named_exp_str_data, [2, 3, 4, 5, 9, 10, 11], 'expSubstrPlotsTex')
 
 
 def prepare_pow_substr_plots():
