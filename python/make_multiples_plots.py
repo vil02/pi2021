@@ -148,7 +148,7 @@ def generate_irrational_data():
     core_value = math.pi
     value_set = set()
     value_str_set = set()
-    frame_num_limit = 40
+    frame_num_limit = 500
     output_file_name = \
         cf.get_config_parameter('fracPartsOfIrrationalMultiplesTex')
     core_name = cf.to_core_name(output_file_name)
