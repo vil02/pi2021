@@ -6,7 +6,7 @@ Implementation of the class SeqStrData and some utilities
 class SeqStrData:
     """
     Allows to search for substrings in the sequences of strings described by
-    self.gen_next_value
+    self._gen_next_value
     It stores the  values of the sequence described by self.get_next_value
     """
 
