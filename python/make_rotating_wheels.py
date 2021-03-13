@@ -68,7 +68,7 @@ def call_make_wheel(in_outer_radius, in_number_of_spokes):
         number_of_spokes=in_number_of_spokes,
         spokes_color=[0.7, 0.7, 0.7],
         tire_color=[0.1, 0.2, 0],
-        marker_color=[1, 0, 0])
+        marker_color=cf.get_config_parameter('wheelMarkerColor'))
 
 
 def draw_wheels(radius_a, radius_b, angle_a, max_spoke_num):
