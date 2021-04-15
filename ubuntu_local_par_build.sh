@@ -6,7 +6,7 @@ do
     python3 "$cur_script" &
 done
 wait
-cd latex/ || return
+cd latex/ || exit 126
 
 FILE_NAME="pi2021"
 readonly FILE_NAME
@@ -18,4 +18,3 @@ pdflatex -interaction=batchmode -draftmode "$FILE_NAME$FILE_EXT"
 pdflatex -interaction=batchmode "$FILE_NAME$FILE_EXT"
 
 cd ..
-
