@@ -8,10 +8,8 @@ done
 wait
 cd latex/ || exit 126
 
-FILE_NAME="pi2021"
-readonly FILE_NAME
-FILE_EXT=".tex"
-readonly FILE_EXT
+readonly FILE_NAME="pi2021"
+readonly FILE_EXT=".tex"
 pdflatex -interaction=batchmode -draftmode "$FILE_NAME$FILE_EXT"
 bibtex $FILE_NAME
 pdflatex -interaction=batchmode -draftmode "$FILE_NAME$FILE_EXT"
