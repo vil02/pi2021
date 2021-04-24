@@ -1,4 +1,4 @@
-name: python_test
+name: python_3_10_test
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
     paths-ignore:
       - 'generated/**'    
   schedule:
-    - cron:  '0 */6 * * *'
+    - cron:  '0 */12 * * *'
 
 jobs:
   build:
