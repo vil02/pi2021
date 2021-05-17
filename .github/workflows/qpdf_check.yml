@@ -1,6 +1,7 @@
 name: qpdf_check
 
 on:
+  workflow_dispatch:
   push:
     paths:
       - 'generated/**'

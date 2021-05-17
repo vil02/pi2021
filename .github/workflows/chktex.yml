@@ -1,6 +1,7 @@
 name: latex_linter_check
 
 on:
+  workflow_dispatch:
   push:
     paths-ignore:
       - 'generated/**'
