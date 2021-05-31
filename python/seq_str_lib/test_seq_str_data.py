@@ -49,9 +49,9 @@ class TestPowStrData(unittest.TestCase):
     def _check_general_seq_str_data_result_dict(
             self, in_result_dict, ssd_obj, in_seq_fun):
         self.assertTrue(in_result_dict)
-        for _ in in_result_dict:
+        for (argument, target_result) in in_result_dict.items():
             self._basic_check_with_target(
-                ssd_obj, _, in_result_dict[_], in_seq_fun)
+                ssd_obj, argument, target_result, in_seq_fun)
 
     def _check_general_seq_str_data_oeis(
             self, in_oeis_url, ssd_obj, in_seq_fun):
