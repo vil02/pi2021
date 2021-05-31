@@ -60,9 +60,10 @@ class TestPowStrData(unittest.TestCase):
 
     def _check_general_seq_str_data_family_oeis(
             self, in_oeis_url_dict, in_get_ssd_obj_fun, in_get_seq_fun):
-        for _ in in_oeis_url_dict:
+        for (family_param, oeis_url) in in_oeis_url_dict.items():
             self._check_general_seq_str_data_oeis(
-                in_oeis_url_dict[_], in_get_ssd_obj_fun(_), in_get_seq_fun(_))
+                oeis_url,
+                in_get_ssd_obj_fun(family_param), in_get_seq_fun(family_param))
 
     def _check_general_seq_str_data(self, ssd_obj, in_seq_fun, in_test_size):
         for _ in range(ssd_obj.seq_offset, in_test_size):
