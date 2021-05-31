@@ -49,7 +49,7 @@ class TestPowStrData(unittest.TestCase):
     def _check_general_seq_str_data_result_dict(
             self, in_result_dict, ssd_obj, in_seq_fun):
         self.assertTrue(in_result_dict)
-        for (argument, target_result) in in_result_dict.items():
+        for argument, target_result in in_result_dict.items():
             self._basic_check_with_target(
                 ssd_obj, argument, target_result, in_seq_fun)
 
@@ -60,7 +60,7 @@ class TestPowStrData(unittest.TestCase):
 
     def _check_general_seq_str_data_family_oeis(
             self, in_oeis_url_dict, in_get_ssd_obj_fun, in_get_seq_fun):
-        for (family_param, oeis_url) in in_oeis_url_dict.items():
+        for family_param, oeis_url in in_oeis_url_dict.items():
             self._check_general_seq_str_data_oeis(
                 oeis_url,
                 in_get_ssd_obj_fun(family_param), in_get_seq_fun(family_param))
