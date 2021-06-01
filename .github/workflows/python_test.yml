@@ -3,7 +3,6 @@ name: python_test
 on:
   workflow_dispatch:
   push:
-    branches: [master]
     paths-ignore:
       - 'generated/**'    
   schedule:
