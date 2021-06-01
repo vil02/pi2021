@@ -3,7 +3,6 @@ name: python_test
 on:
   workflow_dispatch:
   push:
-    branches: [master]
     paths-ignore:
       - 'generated/**'    
   schedule:
@@ -16,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-18.04, ubuntu-20.04, macos-latest, windows-latest]
+        os: [ubuntu-18.04, ubuntu-20.04, macos-10.15, windows-2016, windows-2019]
         python-version: [3.7, 3.8, 3.9, 3.10-dev]
 
     steps:
