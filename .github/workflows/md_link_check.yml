@@ -1,6 +1,6 @@
 name: Check Markdown links
 
-on: 
+on:
   workflow_dispatch:
   push:
     branches: [master]
