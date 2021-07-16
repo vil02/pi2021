@@ -50,6 +50,8 @@
 \newcommand{\myLinkedin}{\href{\myLinkedinLink}{\faLinkedinSquare}}
 \newcommand{\myGithub}{\href{\myGithubLink}{\faGithubSquare}}
 
+\renewcommand{\GenericWarning}[2]{\GenericError{#1}{#2}{}{This warning has been turned into a fatal error.}}
+
 \let\oldsqrt\sqrt{}
 \def\sqrt{\mathpalette\DHLhksqrt}
 \def\DHLhksqrt#1#2{%
