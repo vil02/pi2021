@@ -18,7 +18,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-        persist-credentials: false
+        token: ${{secrets.PUSH_TOKEN}}
     - name: Install dependencies
       run: |
         sudo apt-get install texlive-latex-extra
@@ -41,7 +41,9 @@ jobs:
         ./ubuntu_local_par_build.sh
         mkdir -p ${{env.RESULT_PATH}}
         mv ./latex/pi2021.pdf ${{env.RESULT_PATH}}
-    - name: commit result
+    - name: status at ${{github.ref}}
+      run: git status
+    - name: commit and push result
       working-directory: ${{github.workspace}}
       shell: bash
       run: |
@@ -49,7 +51,4 @@ jobs:
         git config --global user.email 'vil02@users.noreply.github.com'
         git add ${{env.RESULT_PATH}}
         git commit -m "Automated document generation"
-    - name: push result
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{secrets.PUSH_TOKEN}}
+        git push
