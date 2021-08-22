@@ -127,7 +127,7 @@ def generate_substr_plots(
         [prepare_frame_data(in_get_named_seq_str_data(_), output_folder)
          for _ in parameter_range]
     with open(output_folder/cf.get_config_parameter(config_parameter_name),
-              'w',  encoding='utf-8') as all_frames_file:
+              'w', encoding='utf-8') as all_frames_file:
         all_frames_file.write('\n\n'.join(tex_str_list))
 
 
