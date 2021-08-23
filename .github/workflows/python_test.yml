@@ -9,7 +9,7 @@ on:
     - cron: '0 */6 * * *'
 
 jobs:
-  build:
+  python_test:
     runs-on: ${{matrix.os}}
     timeout-minutes: 8
     strategy:

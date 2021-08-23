@@ -5,7 +5,7 @@ on:
   push:
 
 jobs:
-  build:
+  run_shellcheck:
     runs-on: ubuntu-latest
 
     steps:

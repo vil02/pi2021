@@ -7,7 +7,7 @@ on:
     - cron: '30 */3 * * *'
 
 jobs:
-  build:
+  run_lychee:
     runs-on: ubuntu-latest
 
     steps:

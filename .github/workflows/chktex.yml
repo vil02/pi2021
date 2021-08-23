@@ -6,7 +6,7 @@ on:
     paths-ignore:
       - 'generated/**'
 jobs:
-  build:
+  run_chktex:
     runs-on: ubuntu-latest
 
     steps:

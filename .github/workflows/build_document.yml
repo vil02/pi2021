@@ -11,7 +11,7 @@ env:
   PYTHON_VERSION: 3.8
 
 jobs:
-  build:
+  build_document:
     runs-on: ubuntu-20.04
     timeout-minutes: 60
 
