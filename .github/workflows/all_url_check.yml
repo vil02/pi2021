@@ -1,5 +1,7 @@
+---
 name: all_url_check
 
+# yamllint disable-line rule:truthy
 on:
   workflow_dispatch:
   push:
@@ -11,11 +13,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: link_check with lychee-action
-      id: link_check
-      uses: lycheeverse/lychee-action@v1.0.8
-      with:
-        args: --verbose --insecure --no-progress **/*.tex **/*.md **/*.py
-    - name: Fail if there were link errors
-      run: exit ${{steps.link_check.outputs.exit_code}}
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: link_check with lychee-action
+        id: link_check
+        uses: lycheeverse/lychee-action@v1.0.8
+        with:
+          args: --verbose --insecure --no-progress **/*.tex **/*.md
+
+      - name: Fail if there were link errors
+        run: exit ${{steps.link_check.outputs.exit_code}}
+...

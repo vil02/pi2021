@@ -1,5 +1,7 @@
+---
 name: qpdf_check
 
+# yamllint disable-line rule:truthy
 on:
   workflow_dispatch:
   push:
@@ -12,13 +14,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
-    - name: Install qpdf
-      run: |
-        sudo apt-get install qpdf
-    - name: Check with qpdf
-      working-directory: ${{github.workspace}}/generated
-      shell: bash
-      run: |
-        for cur_file in *.pdf; do qpdf --check $cur_file; done
+      - name: Install qpdf
+        run: |
+          sudo apt-get install qpdf
+      - name: Check with qpdf
+        working-directory: ${{github.workspace}}/generated
+        shell: bash
+        run: |
+          for cur_file in *.pdf; do qpdf --check $cur_file; done
+...
