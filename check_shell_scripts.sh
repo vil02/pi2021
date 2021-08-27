@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
-set -u
+set -euo pipefail
 
 declare -i result_code=0
 
