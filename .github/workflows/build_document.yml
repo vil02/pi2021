@@ -46,6 +46,7 @@ jobs:
         shell: bash
         run: |
           ./ubuntu_local_par_build.sh
+          rm -rf ${{env.result_folder}}
           mkdir -p ${{env.result_folder}}
           mv ./latex/pi2021.pdf ${{env.result_folder}}
 
