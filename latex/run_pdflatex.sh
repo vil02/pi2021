@@ -24,7 +24,7 @@ function create_lock()
 {
     mkdir "${script_lock}" ||
     {
-        printf "Can not create lock\n"
+        printf "Cannot create lock\n"
         exit 2
     }
 }
@@ -33,14 +33,14 @@ function remove_lock()
 {
     rm -rf "${script_lock}" ||
     {
-        printf "Can not remove lock\n"
+        printf "Cannot remove lock\n"
         exit 3
     }
 }
 
 if is_already_running
 then
-    printf "Can not acquire lock (another instance is running?) - exiting.\n"
+    printf "Cannot acquire lock (another instance is running?) - exiting.\n"
     exit 1
 fi
 
@@ -49,7 +49,7 @@ create_lock
 rm -f ${pdf_file} ||
 {
     remove_lock
-    printf "Can not remove the old result file\n"
+    printf "Cannot remove the old result file\n"
     exit 4
 }
 
