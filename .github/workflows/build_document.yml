@@ -9,7 +9,6 @@ on:
       - 'generated/**'
 
 env:
-  result_folder: ./generated
   python_version: 3.8
 
 jobs:
@@ -44,11 +43,7 @@ jobs:
       - name: run build script
         working-directory: ${{github.workspace}}
         shell: bash
-        run: |
-          ./ubuntu_local_par_build.sh
-          rm -rf ${{env.result_folder}}
-          mkdir -p ${{env.result_folder}}
-          mv ./latex/pi2021.pdf ${{env.result_folder}}
+        run: ./publish.sh
 
       - name: status at ${{github.ref}}
         run: git status
@@ -59,7 +54,7 @@ jobs:
         run: |
           git config --global user.name 'build_document_action'
           git config --global user.email 'vil02@users.noreply.github.com'
-          git add ${{env.result_folder}}
+          git add "$(./get_output_folder.sh)"
           git commit -m "Automated document generation"
           git push
 ...
