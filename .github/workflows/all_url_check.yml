@@ -20,7 +20,12 @@ jobs:
         id: link_check
         uses: lycheeverse/lychee-action@v1.0.8
         with:
-          args: --verbose --insecure --no-progress **/*.tex **/*.md --accept 200,999
+          args: >
+           --verbose
+           --insecure
+           --no-progress
+           --accept 200,999
+           **/*.tex **/*.md
 
       - name: Fail if there were link errors
         run: exit ${{steps.link_check.outputs.exit_code}}
