@@ -118,6 +118,16 @@ class TestPowStrData(unittest.TestCase):
             ssd.get_pow_str_data,
             lambda exp_value: lambda in_seq_num: in_seq_num**exp_value)
 
+    def test_factorial_str_data_with_oeis(self):
+        """
+        tests the result of the function ssd.get_factorial_str_data
+        against the oeis data
+        """
+        self._check_general_seq_str_data_oeis(
+            'https://oeis.org/A346120/b346120.txt',
+            ssd.get_factorial_str_data(),
+            math.factorial)
+
     def test_factorial_str_data(self):
         """
         tests the object returned by the function ssd.get_factorial_str_data
