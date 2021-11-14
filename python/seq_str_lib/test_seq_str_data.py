@@ -6,6 +6,8 @@ tests of seq_str_data module
 import unittest
 import urllib.request
 import math
+import itertools
+import functools
 
 import seq_str_data as ssd
 
@@ -136,6 +138,52 @@ class TestPowStrData(unittest.TestCase):
             ssd.get_factorial_str_data(),
             math.factorial,
             2000)
+
+    def test_prime_product_str_data_with_oeis(self):
+        """
+        tests ssd for the sequence of product of consecutive primes
+        against oeis data
+        """
+        def gen_primes():
+            known_primes = []
+
+            def new_prime(in_prime):
+                known_primes.append(in_prime)
+                return in_prime
+
+            def calculate_limit(in_num):
+                return int(in_num**0.5)
+
+            yield new_prime(2)
+            cur_num = 1
+            while True:
+                cur_num += 2
+                cur_limit = calculate_limit(cur_num)
+                cur_prime_ind = 0
+                while cur_prime_ind < len(known_primes) and \
+                        known_primes[cur_prime_ind] <= cur_limit:
+                    if cur_num % known_primes[cur_prime_ind] == 0:
+                        cur_num += 2
+                        cur_prime_ind = 0
+                        cur_limit = calculate_limit(cur_num)
+                    else:
+                        cur_prime_ind += 1
+                yield new_prime(cur_num)
+
+        def gen_consec_prod(seq):
+            cur_value = 1
+            for _ in seq:
+                yield cur_value
+                cur_value *= _
+
+        def calculate_product_of_nth_first_primes(in_n):
+            return functools.reduce(
+                lambda a, b: a*b, itertools.islice(gen_primes(), in_n), 1)
+
+        self._check_general_seq_str_data_oeis(
+            'https://oeis.org/A346203/b346203.txt',
+            ssd.SeqStrData(ssd.gen_str(gen_consec_prod(gen_primes()))),
+            calculate_product_of_nth_first_primes)
 
 
 if __name__ == '__main__':
