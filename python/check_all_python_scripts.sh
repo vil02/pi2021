@@ -22,13 +22,14 @@ function check_single()
 
 
 declare -i result_code=0
+declare -i number_of_files=0
 
-shopt -s globstar
 for cur_script in **/*.py;
 do
     if ! check_single "$cur_script" ; then
         result_code=1
     fi
+    number_of_files=$((number_of_files))+1
 done
-
+printf "Number of checked files: %d\n" "${number_of_files}"
 exit $result_code
