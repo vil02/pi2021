@@ -41,6 +41,7 @@ jobs:
           python -m pip install flake8 pylint pytest
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Run linter
+        shell: bash
         run: |
           cd python/
           ./check_all_python_scripts.sh
