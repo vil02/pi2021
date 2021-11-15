@@ -24,7 +24,7 @@ function check_single()
 declare -i result_code=0
 declare -i number_of_files=0
 
-for cur_script in **/*.py;
+for cur_script in *.py **/*.py;
 do
     if ! check_single "$cur_script" ; then
         result_code=1
