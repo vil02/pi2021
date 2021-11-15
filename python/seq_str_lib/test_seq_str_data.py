@@ -19,7 +19,8 @@ def get_oeis_data(in_url):
     def proc_signe_line(in_str):
         n_str, res_str = in_str.split()
         return int(n_str), int(res_str)
-    raw_str = urllib.request.urlopen(in_url).read().decode("utf-8")
+    with urllib.request.urlopen(in_url) as response:
+        raw_str = response.read().decode("utf-8")
     res = {}
     for cur_line in raw_str.splitlines():
         if cur_line and cur_line[0] != '#':
