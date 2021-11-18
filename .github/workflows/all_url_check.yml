@@ -25,7 +25,7 @@ jobs:
            --insecure
            --no-progress
            --accept 200,999
-           **/*.tex **/*.md
+           **/*.tex **/*.md **/*.py
 
       - name: Fail if there were link errors
         run: exit ${{steps.link_check.outputs.exit_code}}
