@@ -2,6 +2,7 @@
 [![build_document](https://github.com/vil02/pi2021/actions/workflows/build_document.yml/badge.svg)](https://github.com/vil02/pi2021/actions/workflows/build_document.yml)
 [![latex_linter_check](https://github.com/vil02/pi2021/actions/workflows/chktex.yml/badge.svg)](https://github.com/vil02/pi2021/actions/workflows/chktex.yml)
 [![pdf_check](https://github.com/vil02/pi2021/actions/workflows/pdf_check.yml/badge.svg)](https://github.com/vil02/pi2021/actions/workflows/pdf_check.yml)
+[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=vil02_pi2021)](https://sonarcloud.io/summary/new_code?id=vil02_pi2021)
 
 Materiały do referatu _Co można znaleźć w potęgach dwójki?_ wygłoszonego podczas [XV Święta Liczby &pi;](https://us.edu.pl/wydzial/wnst/wspolpraca/szkoly/swieto-liczby-pi/).
 Nagranie referatu jest dostępne na platformie [YouTube](https://youtu.be/wUhvIijiO3w?t=15448).
