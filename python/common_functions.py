@@ -49,7 +49,7 @@ def read_paths_and_names():
 
     def proc_single_line(in_line):
         tmp_line = re.sub(r'\s*%.*', '', in_line).strip()
-        if re.fullmatch(r'\\newcommand{\\[^{^{]*}{[^{^{]*}', tmp_line):
+        if re.fullmatch(r'\\newcommand{\\[^{^}]*}{[^{^}]*}', tmp_line):
             raw_str_list = re.findall(r'{[^{^}]*}', tmp_line)
             assert len(raw_str_list) == 2
             assert re.fullmatch(r'\{[^{^}]*}', raw_str_list[0])
