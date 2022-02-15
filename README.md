@@ -4,7 +4,7 @@
 [![pdf_check](https://github.com/vil02/pi2021/actions/workflows/pdf_check.yml/badge.svg)](https://github.com/vil02/pi2021/actions/workflows/pdf_check.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=vil02_pi2021&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=vil02_pi2021)
 
-Materiały do referatu _Co można znaleźć w potęgach dwójki?_ wygłoszonego podczas [XV Święta Liczby &pi;](https://us.edu.pl/wydzial/wnst/wspolpraca/szkoly/swieto-liczby-pi/).
+Materiały do referatu _Co można znaleźć w potęgach dwójki?_ wygłoszonego podczas [XV Święta Liczby &pi;](https://us.edu.pl/wydzial/wnst/wspolpraca/szkoly/swieto-liczby-pi/xv-edycja/).
 Nagranie referatu jest dostępne na platformie [YouTube](https://youtu.be/wUhvIijiO3w?t=15448).
 Prezentacja jest dostępna [tutaj](./generated/pi2021.pdf) ([pobierz](https://raw.githubusercontent.com/vil02/pi2021/master/generated/pi2021.pdf)).
 
