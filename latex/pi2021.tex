@@ -50,6 +50,8 @@
 \newcommand{\myLinkedin}{\href{\myLinkedinLink}{\faLinkedinSquare}}
 \newcommand{\myGithub}{\href{\myGithubLink}{\faGithubSquare}}
 
+\newcommand{\importFromTmpData}[1]{\subimport{\tmpDataFolder}{#1}}
+
 \renewcommand{\GenericWarning}[2]{\GenericError{#1}{#2}{}{This warning has been turned into a fatal error.}}
 
 \let\oldsqrt\sqrt{}
@@ -132,7 +134,7 @@
 
 \section{Symulacje komputerowe}
 
-\subimport{\tmpDataFolder}{\expSubstrPlotsTex}
+\importFromTmpData{\expSubstrPlotsTex}
 
 \section{Rozstrzygnięcie problemu}
 \section{Główne twierdzenie}
@@ -162,7 +164,7 @@
 
 \begin{frame}
   \begin{figure}
-    \subimport{\tmpDataFolder}{\wheelsRationalTex}
+    \importFromTmpData{\wheelsRationalTex}
   \end{figure}
   \begin{theorem}
   Jeżeli $\frac{r_A}{r_B} = \frac{a}{b}$, $\gcd{a}{b} = 1$, to po wykonaniu $b$ obrotów przez koło $A$ ($a$ obrotów przez koło $B$)
@@ -172,7 +174,7 @@
 
 \begin{frame}
   \begin{figure}
-    \subimport{\tmpDataFolder}{\wheelsIrrationalTex}
+    \importFromTmpData{\wheelsIrrationalTex}
   \end{figure}
 \end{frame}
 
@@ -201,13 +203,13 @@ Niech $x \in \R$.
 
 \subsection{\texorpdfstring{O ciągach $\paren{\fracpart{n\gamma}}_{n \in \N}$}{O ciągach wielokrotności liczb mod 1}}
 
-\subimport{\tmpDataFolder}{\fracPartsOfRationalMultiplesTex}
+\importFromTmpData{\fracPartsOfRationalMultiplesTex}
 
 \begin{frame}
   \begin{example}
     Rozważmy ciąg ${\paren{\fracpart{n\pi}}}_{n \in \N}$.
     \begin{figure}
-      \subimport{\tmpDataFolder}{\fracPartsOfIrrationalMultiplesTex}
+      \importFromTmpData{\fracPartsOfIrrationalMultiplesTex}
     \end{figure}
   \end{example}
 
@@ -291,11 +293,11 @@ Niech $x \in \R$.
 
 \section{Symulacje komputerowe dla innych ciągów}
 
-\subimport{\tmpDataFolder}{\powSubstrPlotsTex}
+\importFromTmpData{\powSubstrPlotsTex}
 
 \subsection{\texorpdfstring{$n! = 1\cdot2\cdot \ldots \cdot n, \quad \paren{n \in \N}$, $0! = 1$}{Silnia}} % chktex 11
 
-\subimport{\tmpDataFolder}{\factorialSubstrPlotsTex}
+\importFromTmpData{\factorialSubstrPlotsTex}
 
 
 \section{\texorpdfstring{Dowód lematu~\protect\ref{lemma::log_10_rational_iff}}{Dowód warunku równoważnego wymierności logarytmu dziesiętnego}}
