@@ -97,14 +97,14 @@ def draw_wheels(radius_a, radius_b, angle_a, max_spoke_num):
 
 def draw_vertical_radius_arrow(x_pos, y_end_a, y_end_b, in_str, x_label_shift):
     """draws an around indicating the wheel radius"""
-    arrow_params = dict(
-        width=0.02,
-        head_width=0.2,
-        head_length=0.3,
-        length_includes_head=True,
-        overhang=0.3,
-        linewidth=0,
-        color=[0, 0, 0])
+    arrow_params = {
+        'width': 0.02,
+        'head_width': 0.2,
+        'head_length': 0.3,
+        'length_includes_head': True,
+        'overhang': 0.3,
+        'linewidth': 0,
+        'color': [0, 0, 0]}
     y_middle = (y_end_a+y_end_b)/2
     matplotlib.pyplot.arrow(
         x_pos, y_middle,
