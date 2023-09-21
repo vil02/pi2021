@@ -43,7 +43,7 @@ def make_wheel(**kwargs):
     tire_width = kwargs['outer_radius']-kwargs['inner_radius']
     tire = matplotlib.patches.Wedge(
         (0, 0), kwargs['outer_radius'], 0, 360,
-        tire_width, zorder=10)
+        width=tire_width, zorder=10)
     tire_collection = matplotlib.collections.PatchCollection(
         [tire], color=kwargs['tire_color'], linewidth=0)
 
